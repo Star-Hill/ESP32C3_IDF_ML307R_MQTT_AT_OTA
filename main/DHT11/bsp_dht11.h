@@ -23,6 +23,10 @@
 #define DHT11_TASK_PRIORITY 5
 #define DHT11_READ_INTERVAL_MS 5000 // 读取间隔，单位ms
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void Delay_ms(uint16 ms);
 void DHT11(void); // 温湿传感启动
 
@@ -35,5 +39,9 @@ void dht11_task_resume(void);  // 恢复DHT11任务
 // 获取温湿度数据接口（用于其他模块获取数据）
 float dht11_get_temperature(void);
 float dht11_get_humidity(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

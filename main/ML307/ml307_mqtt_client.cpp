@@ -4,7 +4,7 @@
  */
 
 #include "ml307_mqtt_client.h"
-#include "ml307_mqtt_config.h"  // 包含配置文件
+#include "ml307_mqtt_config.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -21,7 +21,6 @@ static const char *TAG = "MqttClient";
 
 // 全局变量
 static TaskHandle_t mqtt_task_handle_ = NULL;
-static mqtt_message_callback_t message_callback_ = NULL;
 
 // MQTT 客户端对象
 static std::shared_ptr<AtUart> at_uart_;
@@ -146,20 +145,19 @@ static bool connect_mqtt(void)
         ESP_LOGE(TAG, "MQTT 错误: %s", error.c_str());
     });
 
+    // 设置消息接收回调，直接调用用户实现的函数
     mqtt_->OnMessage([](const std::string &topic, const std::string &payload)
     {
         ESP_LOGI(TAG, "");
-        ESP_LOGI(TAG, "📩 ========== 收到消息 ==========");
+        ESP_LOGI(TAG, "📩 ========== 收到 MQTT 消息 ==========");
         ESP_LOGI(TAG, "   主题: %s", topic.c_str());
         ESP_LOGI(TAG, "   内容: %s", payload.c_str());
-        ESP_LOGI(TAG, "================================");
+        ESP_LOGI(TAG, "   长度: %d 字节", payload.length());
+        ESP_LOGI(TAG, "=====================================");
         ESP_LOGI(TAG, "");
 
-        // 调用用户回调
-        if (message_callback_)
-        {
-            message_callback_(topic.c_str(), payload.c_str(), payload.length());
-        }
+        // 调用用户实现的消息处理函数
+        mqtt_on_message(topic.c_str(), payload.c_str(), payload.length());
     });
 
     // 连接到服务器
@@ -241,53 +239,43 @@ static void mqtt_client_task(void *pvParameters)
         ESP_LOGW(TAG, "订阅失败，但继续运行");
     }
 
+    ESP_LOGI(TAG, "");
     ESP_LOGI(TAG, "========================================");
-    ESP_LOGI(TAG, "  初始化完成");
+    ESP_LOGI(TAG, "  初始化完成，开始周期性发送");
     ESP_LOGI(TAG, "  发送间隔: %lu ms", MQTT_PUBLISH_INTERVAL_MS);
     ESP_LOGI(TAG, "  发布主题: %s", MQTT_PUBLISH_TOPIC);
     ESP_LOGI(TAG, "  订阅主题: %s", MQTT_SUBSCRIBE_TOPIC);
     ESP_LOGI(TAG, "========================================");
+    ESP_LOGI(TAG, "");
 
     // 主循环：周期性发送消息
+    char message_buffer[MQTT_MAX_MESSAGE_SIZE];
+    
     while (is_running_)
     {
         if (is_connected_)
         {
-            // 构建消息
             message_count_++;
             
-            char message[256];
-            int len = 0;
+            // 调用用户实现的消息构建函数
+            int msg_len = mqtt_build_message(message_buffer, sizeof(message_buffer), message_count_);
             
-            // 构建 JSON 消息
-            len += snprintf(message + len, sizeof(message) - len, "{");
-            
-#if MQTT_INCLUDE_DEVICE_NAME
-            len += snprintf(message + len, sizeof(message) - len, 
-                           "\"device\":\"%s\",", MQTT_DEVICE_NAME);
-#endif
-
-#if MQTT_INCLUDE_MESSAGE_COUNT
-            len += snprintf(message + len, sizeof(message) - len, 
-                           "\"count\":%lu,", message_count_);
-#endif
-
-#if MQTT_INCLUDE_UPTIME
-            len += snprintf(message + len, sizeof(message) - len, 
-                           "\"uptime\":%lu,", esp_log_timestamp() / 1000);
-#endif
-
-            len += snprintf(message + len, sizeof(message) - len, 
-                           "\"message\":\"Hello from ESP32!\"}");
-
-            // 发送消息
-            if (mqtt_->Publish(MQTT_PUBLISH_TOPIC, message, 0))
+            if (msg_len > 0)
             {
-                ESP_LOGI(TAG, "📤 [%lu] %s", message_count_, message);
+                // 发送消息
+                if (mqtt_->Publish(MQTT_PUBLISH_TOPIC, std::string(message_buffer, msg_len), 0))
+                {
+                    ESP_LOGI(TAG, "📤 [%lu] %s", message_count_, message_buffer);
+                }
+                else
+                {
+                    ESP_LOGE(TAG, "❌ [%lu] 发送失败", message_count_);
+                }
             }
             else
             {
-                ESP_LOGE(TAG, "❌ [%lu] 发送失败", message_count_);
+                // 返回 0 表示跳过本次发送
+                ESP_LOGD(TAG, "跳过发送 (mqtt_build_message 返回 0)");
             }
         }
         else
@@ -334,6 +322,7 @@ bool mqtt_client_start(void)
     is_connected_ = false;
     message_count_ = 0;
 
+    ESP_LOGI(TAG, "");
     ESP_LOGI(TAG, "========================================");
     ESP_LOGI(TAG, "  MQTT 客户端配置");
     ESP_LOGI(TAG, "========================================");
@@ -343,6 +332,7 @@ bool mqtt_client_start(void)
     ESP_LOGI(TAG, "订阅主题: %s", MQTT_SUBSCRIBE_TOPIC);
     ESP_LOGI(TAG, "发送间隔: %lu ms", MQTT_PUBLISH_INTERVAL_MS);
     ESP_LOGI(TAG, "========================================");
+    ESP_LOGI(TAG, "");
 
     // 创建任务
     BaseType_t ret = xTaskCreate(
@@ -381,11 +371,6 @@ void mqtt_client_stop(void)
     }
 
     ESP_LOGI(TAG, "MQTT 客户端任务已停止");
-}
-
-void mqtt_client_set_message_callback(mqtt_message_callback_t callback)
-{
-    message_callback_ = callback;
 }
 
 bool mqtt_client_publish(const char *message)

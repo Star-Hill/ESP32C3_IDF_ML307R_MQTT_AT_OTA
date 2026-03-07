@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "hello_world",
-    "project_version":    "1e1bbcb-dirty",
+    "project_version":    "b75cf0a-dirty",
     "project_path":       "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G",
     "idf_path":           "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf",
     "build_dir":          "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build",
