@@ -1,0 +1,20 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.espIdfPathWin": "d:\\Program\\C\\Espidf552\\IDF552\\v5.5.2\\esp-idf",
+  "idf.toolsPathWin": "d:\\Program\\C\\Espidf552\\IDF_TOOLS552",
+  "idf.pythonInstallPath": "d:\\Program\\C\\Espidf552\\IDF_TOOLS552\\tools\\idf-python\\3.11.2\\python.exe",
+  "idf.openOcdConfigs": [
+    "board/esp32c3-builtin.cfg"
+  ],
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32c3"
+  },
+  "clangd.path": "d:\\Program\\C\\Espidf552\\IDF_TOOLS552\\tools\\esp-clang\\esp-19.1.2_20250312\\esp-clang\\bin\\clangd.exe",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=d:\\Program\\C\\Espidf552\\IDF_TOOLS552\\tools\\riscv32-esp-elf\\esp-14.2.0_20251107\\riscv32-esp-elf\\bin\\riscv32-esp-elf-gcc.exe",
+    "--compile-commands-dir=d:\\Program_Workspace\\ESP_Workspace\\ESP32S3R16N8\\BeeHive_Vscode\\BeeHive_Vscode_4G\\hello_world\\build"
+  ],
+  "idf.portWin": "COM20",
+  "idf.flashType": "UART"
+}
