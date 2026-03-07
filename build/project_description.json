@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "hello_world",
-    "project_version":    "1",
+    "project_version":    "1e1bbcb-dirty",
     "project_path":       "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G",
     "idf_path":           "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf",
     "build_dir":          "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build",
@@ -940,8 +940,8 @@
             "managed_reqs": [],
             "managed_priv_reqs": [ "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit" ],
             "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/main/libmain.a",
-            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main/main.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main/dht11/bsp_dht11.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main/XL9555/xl9555_ir_counter.c" ],
-            "include_dirs": [ ".", "dht11", "XL9555" ]
+            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main/main.cpp", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main/DHT11/bsp_dht11.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main/ML307/ml307_mqtt_client.cpp", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main/XL9555/xl9555_ir_counter.c" ],
+            "include_dirs": [ ".", "DHT11", "XL9555", "ML307" ]
         },
         "mbedtls": {
             "alias": "idf::mbedtls",
@@ -2446,7 +2446,7 @@
             "priv_reqs": [ "spi_flash", "mqtt", "nvs_flash", "esp_netif", "json", "driver", "esp_wifi", "esp_http_server", "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit" ],
             "managed_reqs": [],
             "managed_priv_reqs": [ "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit" ],
-            "include_dirs": [ ".", "dht11", "XL9555" ]
+            "include_dirs": [ ".", "DHT11", "XL9555", "ML307" ]
         },
         "78__esp-ml307": {
             "alias": "idf::78__esp-ml307",
