@@ -15,6 +15,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "DHT11/bsp_dht11.h"
+#include "esp_io_expander_tca95xx_16bit.h"
+#include "xl9555_ir_counter.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -117,6 +121,25 @@ bool mqtt_client_is_connected(void);
  * @return 消息计数
  */
 uint32_t mqtt_client_get_message_count(void);
+
+
+
+/**
+ * @brief mqtt构建JSON消息数据
+ * 
+ * @return 
+ */
+int mqtt_build_message(char *buffer, size_t buffer_size, uint32_t message_count);
+
+
+/**
+ * @brief 处理收到的消息
+ * 
+ * @return 消息计数
+ */
+void mqtt_on_message(const char *topic, const char *payload, size_t payload_len);
+
+
 
 #ifdef __cplusplus
 }

@@ -23,8 +23,8 @@ end
 
 # Load bootloader symbols
 set confirm off
-    add-symbol-file D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/bootloader/bootloader.elf
+    add-symbol-file D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/bootloader/bootloader.elf
 set confirm on
 
 # Load application symbols
-file D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/hello_world.elf
+file D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/BeeHive_Vscode_4G.elf

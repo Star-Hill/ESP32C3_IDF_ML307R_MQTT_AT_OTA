@@ -1,5 +1,7 @@
 ## IDF Component Manager Manifest File
 dependencies:
+  protocol_examples_common:
+    path: ${IDF_PATH}/examples/common_components/protocol_examples_common
   espressif/esp_io_expander_tca9554: ==2.0.0
   espressif/esp_io_expander_tca95xx_16bit: ^2.0.0
   78/esp-ml307: ~3.5.1

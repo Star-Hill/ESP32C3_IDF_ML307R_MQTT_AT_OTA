@@ -1,4 +1,13 @@
 /*
+ * @Author: Stathill星丘 && cishaxiatian@gmail.com
+ * @Date: 2026-03-06 13:33:32
+ * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
+ * @LastEditTime: 2026-03-08 11:27:52
+ * @FilePath: \BeeHive_Vscode_4G\main\XL9555\xl9555_ir_counter.h
+ * @Description: XL9555 16路红外计数模块 —— INT中断驱动，头文件
+ */
+
+/*
  * xl9555_ir_counter.h
  *
  * XL9555 16路红外计数模块 —— INT中断驱动
@@ -9,7 +18,6 @@
  *   3. xl9555_ir_counter_start();  // 启动后台任务
  *   4. 需要时调用 xl9555_ir_counter_get() 获取计数
  */
-
 #pragma once
 
 #include <stdint.h>

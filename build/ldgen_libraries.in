@@ -114,6 +114,9 @@ $<TARGET_FILE:idf::wpa_supplicant>
 $<TARGET_FILE:idf::esp_coex>
 $<TARGET_FILE:idf::esp_wifi>
 $<TARGET_FILE:idf::esp_http_server>
+$<TARGET_FILE:idf::spiffs>
+$<TARGET_FILE:idf::xn_web_wifi_manger>
+$<TARGET_FILE:__idf_spiffs>
 $<TARGET_FILE:idf::78__esp-ml307>
 $<TARGET_FILE:__idf_mqtt>
 $<TARGET_FILE:idf::espressif__esp_io_expander>
@@ -121,8 +124,15 @@ $<TARGET_FILE:idf::espressif__esp_io_expander_tca9554>
 $<TARGET_FILE:__idf_driver>
 $<TARGET_FILE:__idf_espressif__esp_io_expander>
 $<TARGET_FILE:idf::espressif__esp_io_expander_tca95xx_16bit>
+$<TARGET_FILE:idf::console>
+$<TARGET_FILE:idf::esp_eth>
+$<TARGET_FILE:idf::protocol_examples_common>
+$<TARGET_FILE:__idf_console>
+$<TARGET_FILE:__idf_esp_eth>
 $<TARGET_FILE:idf::main>
 $<TARGET_FILE:__idf_json>
+$<TARGET_FILE:__idf_xn_web_wifi_manger>
 $<TARGET_FILE:__idf_78__esp-ml307>
 $<TARGET_FILE:__idf_espressif__esp_io_expander_tca9554>
 $<TARGET_FILE:__idf_espressif__esp_io_expander_tca95xx_16bit>
+$<TARGET_FILE:__idf_protocol_examples_common>

@@ -1,0 +1,368 @@
+/*
+ * @Author: 星年 && jixingnian@gmail.com
+ * @Date: 2025-11-22 21:40:00
+ * @LastEditors: xingnian jixingnian@gmail.com
+ * @LastEditTime: 2026-03-07 16:30:00
+ * @FilePath: \xn_web_wifi_config\components\xn_web_wifi_manger\wifi_spiffs\app.css
+ * @Description: Web 配网页面的基础样式（亮色主题 + 简洁卡片布局）
+ *
+ * 只关注结构与观感，不绑定任何具体业务逻辑。
+ */
+
+/* -------------------- 全局基础设置 -------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  background: #f0f4f8; /* 浅灰蓝背景，柔和不刺眼 */
+  color: #1e293b;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* -------------------- 页面整体布局 -------------------- */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.page-inner {
+  width: 100%;
+  max-width: 960px; /* 限制阅读宽度，保持视觉集中 */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.page-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.page-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* -------------------- 通用卡片 -------------------- */
+
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 14px 16px 16px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.card-extra {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.card-body {
+  font-size: 13px;
+  color: #334155;
+}
+
+/* -------------------- 状态模块布局 -------------------- */
+
+.status-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.status-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.status-label {
+  color: #64748b;
+}
+
+.status-value {
+  font-weight: 500;
+  color: #0f172a;
+  word-break: break-all;
+}
+
+/* 连接状态处的简单加载动画，通过 data-loading 标记控制 */
+.status-value[data-loading="true"] {
+  position: relative;
+  padding-right: 18px;
+}
+
+.status-value[data-loading="true"]::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  border-radius: 999px;
+  border: 2px solid #cbd5e1;
+  border-top-color: #3b82f6;
+  animation: status-spin 0.8s linear infinite;
+}
+
+@keyframes status-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.status-visual {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* 简单的信号条可视化：根据 data-level 控制亮度 */
+.signal-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  width: 60px;
+  height: 28px;
+}
+
+.signal-bar span {
+  flex: 1;
+  border-radius: 3px 3px 0 0;
+  background: #3b82f6;
+  opacity: 0.25;
+}
+
+.signal-bar span:nth-child(1) {
+  height: 25%;
+}
+
+.signal-bar span:nth-child(2) {
+  height: 45%;
+}
+
+.signal-bar span:nth-child(3) {
+  height: 70%;
+}
+
+.signal-bar span:nth-child(4) {
+  height: 100%;
+}
+
+.signal-bar[data-level="1"] span:nth-child(1),
+.signal-bar[data-level="2"] span:nth-child(-n + 3),
+.signal-bar[data-level="3"] span {
+  opacity: 1;
+}
+
+/* -------------------- 表格与工具栏 -------------------- */
+
+.table-wrapper {
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.simple-table thead {
+  background: #f8fafc;
+}
+
+.simple-table th,
+.simple-table td {
+  padding: 7px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.simple-table th {
+  font-weight: 500;
+  color: #64748b;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.simple-table td {
+  border-top: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+.simple-table tbody tr:nth-child(2n) {
+  background: #fafbfc;
+}
+
+.simple-table tbody tr:hover {
+  background: #eff6ff;
+}
+
+.empty-hint {
+  margin: 8px 10px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.toolbar-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+/* -------------------- 按钮与表单 -------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, box-shadow 0.15s ease,
+    transform 0.1s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+  box-shadow: none;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-label {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.form-input {
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  padding: 6px 9px;
+  font-size: 16px;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.form-message {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* -------------------- 响应式适配 -------------------- */
+
+@media (max-width: 720px) {
+  .page {
+    padding: 14px;
+  }
+
+  .page-inner {
+    gap: 12px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .status-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

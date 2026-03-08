@@ -3,3 +3,4 @@ source "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_app_format/K
 source "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/Kconfig.projbuild"
 source "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esptool_py/Kconfig.projbuild"
 source "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/partition_table/Kconfig.projbuild"
+source "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/examples/common_components/protocol_examples_common/Kconfig.projbuild"

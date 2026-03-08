@@ -1,15 +1,15 @@
 {
     "version":            "1.2",
-    "project_name":       "hello_world",
-    "project_version":    "b75cf0a-dirty",
-    "project_path":       "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G",
+    "project_name":       "BeeHive_Vscode_4G",
+    "project_version":    "4e32e84-dirty",
+    "project_path":       "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI",
     "idf_path":           "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf",
-    "build_dir":          "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build",
-    "config_file":        "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/sdkconfig",
+    "build_dir":          "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build",
+    "config_file":        "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/sdkconfig",
     "config_defaults":    "",
-    "bootloader_elf":     "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/bootloader/bootloader.elf",
-    "app_elf":            "hello_world.elf",
-    "app_bin":            "hello_world.bin",
+    "bootloader_elf":     "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/bootloader/bootloader.elf",
+    "app_elf":            "BeeHive_Vscode_4G.elf",
+    "app_bin":            "BeeHive_Vscode_4G.bin",
     "build_type":         "flash_app",
     "git_revision":       "v5.5.2",
     "target":             "esp32c3",
@@ -21,26 +21,26 @@
     "monitor_toolprefix": "riscv32-esp-elf-",
     "c_compiler":         "D:/Program/C/Espidf552/IDF_TOOLS552/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe",
     "config_environment" : {
-        "COMPONENT_KCONFIGS" : "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp-tls/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_coex/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_common/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_ana_cmpr/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_bitscrambler/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_dac/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gpio/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gptimer/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2c/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2s/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_ledc/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_mcpwm/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_parlio/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_pcnt/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_rmt/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdm/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_spi/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_tsens/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_twai/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_uart/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_usb_serial_jtag/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_event/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_http_server/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_mm/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_partition/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_phy/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_pm/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_ringbuf/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_security/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_timer/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/heap/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mbedtls/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mqtt/esp-mqtt/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/pthread/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/tcp_transport/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/vfs/Kconfig;D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander/Kconfig",
-        "COMPONENT_KCONFIGS_PROJBUILD" : "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader/Kconfig.projbuild;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_app_format/Kconfig.projbuild;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/Kconfig.projbuild;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esptool_py/Kconfig.projbuild;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/partition_table/Kconfig.projbuild"
+        "COMPONENT_KCONFIGS" : "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp-tls/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_coex/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_common/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_ana_cmpr/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_bitscrambler/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_dac/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gpio/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gptimer/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2c/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2s/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_ledc/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_mcpwm/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_parlio/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_pcnt/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_rmt/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdm/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_spi/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_tsens/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_twai/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_uart/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_usb_serial_jtag/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_eth/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_event/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_http_server/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_mm/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_partition/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_phy/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_pm/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_ringbuf/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_security/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_timer/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/heap/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/ieee802154/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mbedtls/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mqtt/esp-mqtt/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/openthread/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/pthread/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spiffs/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/tcp_transport/Kconfig;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/vfs/Kconfig;D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader/Kconfig.projbuild;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_app_format/Kconfig.projbuild;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/Kconfig.projbuild;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esptool_py/Kconfig.projbuild;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/partition_table/Kconfig.projbuild;D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/examples/common_components/protocol_examples_common/Kconfig.projbuild"
     },
     "common_component_reqs": [ "cxx", "newlib", "freertos", "esp_hw_support", "heap", "log", "soc", "hal", "esp_rom", "esp_common", "esp_system", "riscv" ],
-    "build_components" : [ "78__esp-ml307", "app_update", "bootloader", "bootloader_support", "cxx", "driver", "efuse", "esp-tls", "esp_app_format", "esp_bootloader_format", "esp_coex", "esp_common", "esp_driver_ana_cmpr", "esp_driver_bitscrambler", "esp_driver_dac", "esp_driver_gpio", "esp_driver_gptimer", "esp_driver_i2c", "esp_driver_i2s", "esp_driver_ledc", "esp_driver_mcpwm", "esp_driver_parlio", "esp_driver_pcnt", "esp_driver_rmt", "esp_driver_sdio", "esp_driver_sdm", "esp_driver_sdmmc", "esp_driver_sdspi", "esp_driver_spi", "esp_driver_tsens", "esp_driver_twai", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_event", "esp_http_server", "esp_hw_support", "esp_mm", "esp_netif", "esp_netif_stack", "esp_partition", "esp_phy", "esp_pm", "esp_ringbuf", "esp_rom", "esp_security", "esp_system", "esp_timer", "esp_vfs_console", "esp_wifi", "espressif__esp_io_expander", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit", "esptool_py", "freertos", "hal", "heap", "http_parser", "json", "log", "lwip", "main", "mbedtls", "mqtt", "newlib", "nvs_flash", "partition_table", "pthread", "riscv", "sdmmc", "soc", "spi_flash", "tcp_transport", "vfs", "wpa_supplicant", "" ],
-    "build_component_paths" : [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/app_update", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/cxx", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp-tls", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_app_format", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_bootloader_format", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_coex", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_common", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_ana_cmpr", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_bitscrambler", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_dac", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gpio", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gptimer", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2s", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_ledc", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_mcpwm", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_parlio", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_pcnt", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_rmt", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdio", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdm", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdmmc", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdspi", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_spi", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_tsens", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_twai", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_uart", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_usb_serial_jtag", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_event", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_http_server", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_mm", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif_stack", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_partition", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_phy", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_pm", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_ringbuf", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_security", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_timer", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_vfs_console", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander_tca9554", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander_tca95xx_16bit", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esptool_py", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/heap", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/http_parser", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/json", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mbedtls", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mqtt", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/partition_table", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/pthread", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/riscv", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/sdmmc", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/tcp_transport", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/vfs", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant", "" ],
+    "build_components" : [ "78__esp-ml307", "app_update", "bootloader", "bootloader_support", "console", "cxx", "driver", "efuse", "esp-tls", "esp_app_format", "esp_bootloader_format", "esp_coex", "esp_common", "esp_driver_ana_cmpr", "esp_driver_bitscrambler", "esp_driver_dac", "esp_driver_gpio", "esp_driver_gptimer", "esp_driver_i2c", "esp_driver_i2s", "esp_driver_ledc", "esp_driver_mcpwm", "esp_driver_parlio", "esp_driver_pcnt", "esp_driver_rmt", "esp_driver_sdio", "esp_driver_sdm", "esp_driver_sdmmc", "esp_driver_sdspi", "esp_driver_spi", "esp_driver_tsens", "esp_driver_twai", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_eth", "esp_event", "esp_http_server", "esp_hw_support", "esp_mm", "esp_netif", "esp_netif_stack", "esp_partition", "esp_phy", "esp_pm", "esp_ringbuf", "esp_rom", "esp_security", "esp_system", "esp_timer", "esp_vfs_console", "esp_wifi", "espressif__esp_io_expander", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit", "esptool_py", "freertos", "hal", "heap", "http_parser", "ieee802154", "json", "log", "lwip", "main", "mbedtls", "mqtt", "newlib", "nvs_flash", "openthread", "partition_table", "protocol_examples_common", "pthread", "riscv", "sdmmc", "soc", "spi_flash", "spiffs", "tcp_transport", "vfs", "wpa_supplicant", "xn_web_wifi_manger", "" ],
+    "build_component_paths" : [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/app_update", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/cxx", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp-tls", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_app_format", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_bootloader_format", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_coex", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_common", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_ana_cmpr", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_bitscrambler", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_dac", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gpio", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gptimer", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2s", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_ledc", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_mcpwm", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_parlio", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_pcnt", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_rmt", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdio", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdm", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdmmc", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdspi", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_spi", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_tsens", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_twai", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_uart", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_usb_serial_jtag", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_eth", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_event", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_http_server", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_mm", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif_stack", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_partition", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_phy", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_pm", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_ringbuf", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_security", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_timer", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_vfs_console", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander_tca9554", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander_tca95xx_16bit", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esptool_py", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/heap", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/http_parser", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/ieee802154", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/json", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mbedtls", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mqtt", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/openthread", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/partition_table", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/examples/common_components/protocol_examples_common", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/pthread", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/riscv", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/sdmmc", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spiffs", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/tcp_transport", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/vfs", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/components/xn_web_wifi_manger", "" ],
     "build_component_info" : {
         "78__esp-ml307": {
             "alias": "idf::78__esp-ml307",
             "target": "___idf_78__esp-ml307",
             "prefix": "idf",
-            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307",
             "type": "LIBRARY",
             "lib": "__idf_78__esp-ml307",
             "reqs": [ "esp_driver_gpio", "esp_driver_uart", "esp_pm", "esp-tls", "pthread", "mqtt" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/78__esp-ml307/lib78__esp-ml307.a",
-            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/at_uart.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/at_modem.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/ec801e/ec801e_at_modem.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/ec801e/ec801e_tcp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/ec801e/ec801e_ssl.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/ec801e/ec801e_udp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/ec801e/ec801e_mqtt.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/ml307/ml307_at_modem.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/ml307/ml307_tcp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/ml307/ml307_ssl.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/ml307/ml307_mqtt.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/ml307/ml307_udp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/ml307/ml307_http.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/esp/esp_network.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/esp/esp_ssl.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/esp/esp_tcp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/esp/esp_mqtt.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/esp/esp_udp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/web_socket.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307/src/http_client.cc" ],
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/78__esp-ml307/lib78__esp-ml307.a",
+            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/at_uart.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/at_modem.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/ec801e/ec801e_at_modem.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/ec801e/ec801e_tcp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/ec801e/ec801e_ssl.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/ec801e/ec801e_udp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/ec801e/ec801e_mqtt.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/ml307/ml307_at_modem.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/ml307/ml307_tcp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/ml307/ml307_ssl.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/ml307/ml307_mqtt.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/ml307/ml307_udp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/ml307/ml307_http.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/esp/esp_network.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/esp/esp_ssl.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/esp/esp_tcp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/esp/esp_mqtt.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/esp/esp_udp.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/web_socket.cc", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307/src/http_client.cc" ],
             "include_dirs": [ "include" ]
         },
         "app_update": {
@@ -54,7 +54,7 @@
             "priv_reqs": [ "esptool_py", "efuse", "spi_flash" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/app_update/libapp_update.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/app_update/libapp_update.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/app_update/esp_ota_ops.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/app_update/esp_ota_app_desc.c" ],
             "include_dirs": [ "include" ]
         },
@@ -84,9 +84,24 @@
             "priv_reqs": [ "spi_flash", "mbedtls", "efuse", "heap", "esp_bootloader_format", "esp_app_format" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/bootloader_support/libbootloader_support.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/bootloader_support/libbootloader_support.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/bootloader_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/bootloader_common_loader.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/bootloader_clock_init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/bootloader_mem.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/bootloader_random.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/bootloader_efuse.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/flash_encrypt.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/secure_boot.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/bootloader_random_esp32c3.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/bootloader_flash/src/bootloader_flash.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/bootloader_flash/src/flash_qio_mode.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c3.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/bootloader_utility.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/flash_partitions.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/esp_image_format.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/bootloader_sha.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/bootloader_support/src/esp32c3/secure_boot_secure_features.c" ],
             "include_dirs": [ "include", "bootloader_flash/include" ]
+        },
+        "console": {
+            "alias": "idf::console",
+            "target": "___idf_console",
+            "prefix": "idf",
+            "dir": "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console",
+            "type": "LIBRARY",
+            "lib": "__idf_console",
+            "reqs": [ "vfs", "esp_vfs_console" ],
+            "priv_reqs": [ "esp_driver_uart", "esp_driver_usb_serial_jtag" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/console/libconsole.a",
+            "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/commands.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/esp_console_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/esp_console_repl_internal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/split_argv.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/linenoise/linenoise.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/esp_console_repl_chip.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_cmd.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_date.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_dbl.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_dstr.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_end.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_file.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_hashtable.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_int.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_lit.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_rem.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_rex.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_str.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/arg_utils.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console/argtable3/argtable3.c" ],
+            "include_dirs": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console" ]
         },
         "cxx": {
             "alias": "idf::cxx",
@@ -99,7 +114,7 @@
             "priv_reqs": [ "esp_system", "pthread" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/cxx/libcxx.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/cxx/libcxx.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/cxx/cxx_exception_stubs.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/cxx/cxx_guards.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/cxx/cxx_init.cpp" ],
             "include_dirs": []
         },
@@ -114,7 +129,7 @@
             "priv_reqs": [ "efuse", "esp_timer", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/driver/libdriver.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/driver/libdriver.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver/deprecated/adc_legacy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver/deprecated/adc_dma_legacy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver/deprecated/timer_legacy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver/i2c/i2c.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver/deprecated/i2s_legacy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver/deprecated/rmt_legacy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver/deprecated/sigma_delta_legacy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver/deprecated/rtc_temperature_legacy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/driver/twai/twai.c" ],
             "include_dirs": [ "deprecated", "i2c/include", "touch_sensor/include", "twai/include" ]
         },
@@ -129,7 +144,7 @@
             "priv_reqs": [ "bootloader_support", "soc", "spi_flash", "esp_system", "esp_partition", "esp_app_format" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/efuse/libefuse.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/efuse/libefuse.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse/esp32c3/esp_efuse_table.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse/esp32c3/esp_efuse_fields.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse/esp32c3/esp_efuse_rtc_calib.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse/esp32c3/esp_efuse_utility.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse/src/esp_efuse_api.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse/src/esp_efuse_fields.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse/src/esp_efuse_utility.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse/src/efuse_controller/keys/with_key_purposes/esp_efuse_api_key.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/efuse/src/esp_efuse_startup.c" ],
             "include_dirs": [ "include", "esp32c3/include" ]
         },
@@ -144,7 +159,7 @@
             "priv_reqs": [ "http_parser", "esp_timer", "lwip" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp-tls/libesp-tls.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp-tls/libesp-tls.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp-tls/esp_tls.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp-tls/esp-tls-crypto/esp_tls_crypto.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp-tls/esp_tls_error_capture.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp-tls/esp_tls_platform_port.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp-tls/esp_tls_mbedtls.c" ],
             "include_dirs": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp-tls", "esp-tls-crypto" ]
         },
@@ -159,7 +174,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_app_format/libesp_app_format.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_app_format/libesp_app_format.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_app_format/esp_app_desc.c" ],
             "include_dirs": [ "include" ]
         },
@@ -174,7 +189,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_bootloader_format/libesp_bootloader_format.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_bootloader_format/libesp_bootloader_format.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c" ],
             "include_dirs": [ "include" ]
         },
@@ -189,7 +204,7 @@
             "priv_reqs": [ "esp_timer", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_coex/libesp_coex.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_coex/libesp_coex.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_coex/esp32c3/esp_coex_adapter.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_coex/src/coexist_debug_diagram.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_coex/src/coexist_debug.c" ],
             "include_dirs": [ "include" ]
         },
@@ -204,7 +219,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_common/libesp_common.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_common/libesp_common.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_common/src/esp_err_to_name.c" ],
             "include_dirs": [ "include" ]
         },
@@ -264,7 +279,7 @@
             "priv_reqs": [ "esp_pm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_gpio/libesp_driver_gpio.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_gpio/libesp_driver_gpio.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gpio/src/gpio.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gpio/src/gpio_glitch_filter_ops.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gpio/src/rtc_io.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gpio/src/dedic_gpio.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gpio/src/gpio_pin_glitch_filter.c" ],
             "include_dirs": [ "include" ]
         },
@@ -279,7 +294,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_gptimer/libesp_driver_gptimer.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_gptimer/libesp_driver_gptimer.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gptimer/src/gptimer.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_gptimer/src/gptimer_common.c" ],
             "include_dirs": [ "include" ]
         },
@@ -294,7 +309,7 @@
             "priv_reqs": [ "esp_driver_gpio", "esp_pm", "esp_ringbuf" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_i2c/libesp_driver_i2c.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_i2c/libesp_driver_i2c.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2c/i2c_master.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2c/i2c_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2c/i2c_slave.c" ],
             "include_dirs": [ "include" ]
         },
@@ -309,7 +324,7 @@
             "priv_reqs": [ "esp_driver_gpio", "esp_pm", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_i2s/libesp_driver_i2s.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_i2s/libesp_driver_i2s.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2s/i2s_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2s/i2s_std.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2s/i2s_pdm.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2s/i2s_tdm.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_i2s/i2s_platform.c" ],
             "include_dirs": [ "include" ]
         },
@@ -324,7 +339,7 @@
             "priv_reqs": [ "esp_pm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_ledc/libesp_driver_ledc.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_ledc/libesp_driver_ledc.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_ledc/src/ledc.c" ],
             "include_dirs": [ "include" ]
         },
@@ -384,7 +399,7 @@
             "priv_reqs": [ "esp_pm", "esp_driver_gpio", "esp_driver_bitscrambler", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_rmt/libesp_driver_rmt.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_rmt/libesp_driver_rmt.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_rmt/src/rmt_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_rmt/src/rmt_encoder.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_rmt/src/rmt_encoder_bytes.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_rmt/src/rmt_encoder_copy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_rmt/src/rmt_encoder_simple.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_rmt/src/rmt_rx.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_rmt/src/rmt_tx.c" ],
             "include_dirs": [ "include" ]
         },
@@ -414,7 +429,7 @@
             "priv_reqs": [ "esp_pm", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_sdm/libesp_driver_sdm.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_sdm/libesp_driver_sdm.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdm/src/sdm.c" ],
             "include_dirs": [ "include" ]
         },
@@ -444,7 +459,7 @@
             "priv_reqs": [ "esp_timer", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_sdspi/libesp_driver_sdspi.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_sdspi/libesp_driver_sdspi.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdspi/src/sdspi_crc.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdspi/src/sdspi_host.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_sdspi/src/sdspi_transaction.c" ],
             "include_dirs": [ "include" ]
         },
@@ -459,7 +474,7 @@
             "priv_reqs": [ "esp_timer", "esp_mm", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_spi/libesp_driver_spi.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_spi/libesp_driver_spi.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_spi/src/gpspi/spi_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_spi/src/gpspi/spi_master.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_spi/src/gpspi/spi_slave.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_spi/src/gpspi/spi_slave_hd.c" ],
             "include_dirs": [ "include" ]
         },
@@ -474,7 +489,7 @@
             "priv_reqs": [ "efuse" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_tsens/libesp_driver_tsens.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_tsens/libesp_driver_tsens.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_tsens/src/temperature_sensor.c" ],
             "include_dirs": [ "include" ]
         },
@@ -489,7 +504,7 @@
             "priv_reqs": [ "esp_driver_gpio", "esp_pm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_twai/libesp_driver_twai.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_twai/libesp_driver_twai.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_twai/esp_twai.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_twai/esp_twai_onchip.c" ],
             "include_dirs": [ "include" ]
         },
@@ -504,7 +519,7 @@
             "priv_reqs": [ "esp_pm", "esp_driver_gpio", "esp_ringbuf", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_uart/libesp_driver_uart.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_uart/libesp_driver_uart.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_uart/src/uart.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_uart/src/uart_wakeup.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_uart/src/uhci.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_uart/src/uart_vfs.c" ],
             "include_dirs": [ "include" ]
         },
@@ -519,8 +534,23 @@
             "priv_reqs": [ "esp_driver_gpio", "esp_ringbuf", "esp_pm", "esp_timer" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_connection_monitor.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_vfs.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_eth": {
+            "alias": "idf::esp_eth",
+            "target": "___idf_esp_eth",
+            "prefix": "idf",
+            "dir": "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_eth",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_eth",
+            "reqs": [ "esp_event" ],
+            "priv_reqs": [ "log", "esp_timer", "esp_driver_spi", "esp_driver_gpio" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_eth/libesp_eth.a",
+            "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_eth/src/esp_eth.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_eth/src/phy/esp_eth_phy_802_3.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_eth/src/esp_eth_netif_glue.c" ],
             "include_dirs": [ "include" ]
         },
         "esp_event": {
@@ -534,7 +564,7 @@
             "priv_reqs": [ "esp_timer" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_event/libesp_event.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_event/libesp_event.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_event/default_event_loop.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_event/esp_event.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_event/esp_event_private.c" ],
             "include_dirs": [ "include" ]
         },
@@ -549,7 +579,7 @@
             "priv_reqs": [ "mbedtls", "lwip", "esp_timer" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_http_server/libesp_http_server.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_http_server/libesp_http_server.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_http_server/src/httpd_main.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_http_server/src/httpd_parse.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_http_server/src/httpd_sess.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_http_server/src/httpd_txrx.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_http_server/src/httpd_uri.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_http_server/src/httpd_ws.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_http_server/src/util/ctrl_sock.c" ],
             "include_dirs": [ "include" ]
         },
@@ -564,7 +594,7 @@
             "priv_reqs": [ "efuse", "spi_flash", "bootloader_support", "esp_security", "esp_driver_gpio", "esp_timer", "esp_pm", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_hw_support/libesp_hw_support.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_hw_support/libesp_hw_support.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/cpu.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/esp_cpu_intr.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/esp_memory_utils.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/cpu_region_protect.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/esp_clk.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/clk_ctrl_os.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/hw_random.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/intr_alloc.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/mac_addr.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/periph_ctrl.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/revision.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/rtc_module.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/regi2c_ctrl.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/esp_gpio_reserve.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/sar_periph_ctrl_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/io_mux.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/esp_clk_tree.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/dma/esp_dma_utils.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/dma/gdma_link.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/spi_bus_lock.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/clk_utils.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp_clk_tree_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/spi_share_hw_ctrl.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/adc_share_hw_ctrl.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/sleep_modem.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/sleep_modes.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/sleep_console.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/sleep_mspi.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/sleep_usb.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/sleep_gpio.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/sleep_event.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/dma/gdma.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/deprecated/gdma_legacy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/dma/esp_async_memcpy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/dma/async_memcpy_gdma.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/systimer.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/mspi_timing_tuning/mspi_timing_tuning.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/sleep_wake_stub.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/esp_clock_output.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/power_supply/brownout.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/rtc_clk_init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/rtc_clk.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/rtc_init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/rtc_sleep.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/rtc_time.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/chip_info.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/sar_periph_ctrl.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/adc2_init_cal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp32c3/esp_memprot.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/port/esp_memprot_conv.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_hw_support/lowpower/port/esp32c3/sleep_cpu.c" ],
             "include_dirs": [ "include", "include/soc", "include/soc/esp32c3", "dma/include", "ldo/include", "debug_probe/include", "mspi_timing_tuning/include", "mspi_timing_tuning/tuning_scheme_impl/include", "power_supply/include" ]
         },
@@ -579,7 +609,7 @@
             "priv_reqs": [ "heap", "spi_flash" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_mm/libesp_mm.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_mm/libesp_mm.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_mm/esp_mmu_map.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_mm/port/esp32c3/ext_mem_layout.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_mm/esp_cache_msync.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_mm/esp_cache_utils.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_mm/heap_align_hw.c" ],
             "include_dirs": [ "include" ]
         },
@@ -594,7 +624,7 @@
             "priv_reqs": [ "esp_netif_stack" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_netif/libesp_netif.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_netif/libesp_netif.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif/esp_netif_handlers.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif/esp_netif_objects.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif/esp_netif_defaults.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif/lwip/esp_netif_lwip.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif/lwip/esp_netif_sntp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif/lwip/esp_netif_lwip_defaults.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif/lwip/netif/wlanif.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif/lwip/netif/ethernetif.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_netif/lwip/netif/esp_pbuf_ref.c" ],
             "include_dirs": [ "include" ]
         },
@@ -624,7 +654,7 @@
             "priv_reqs": [ "esp_system", "spi_flash", "partition_table", "bootloader_support", "app_update" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_partition/libesp_partition.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_partition/libesp_partition.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_partition/partition.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_partition/partition_target.c" ],
             "include_dirs": [ "include" ]
         },
@@ -639,7 +669,7 @@
             "priv_reqs": [ "nvs_flash", "esp_driver_gpio", "efuse", "esp_timer", "esp_wifi" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_phy/libesp_phy.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_phy/libesp_phy.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_phy/src/phy_override.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_phy/src/lib_printf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_phy/src/phy_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_phy/src/phy_init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_phy/esp32c3/phy_init_data.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_phy/src/btbb_init.c" ],
             "include_dirs": [ "include", "esp32c3/include" ]
         },
@@ -654,7 +684,7 @@
             "priv_reqs": [ "esp_system", "esp_driver_gpio", "esp_timer" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_pm/libesp_pm.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_pm/libesp_pm.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_pm/pm_locks.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_pm/pm_trace.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_pm/pm_impl.c" ],
             "include_dirs": [ "include" ]
         },
@@ -669,7 +699,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_ringbuf/libesp_ringbuf.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_ringbuf/libesp_ringbuf.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_ringbuf/ringbuf.c" ],
             "include_dirs": [ "include" ]
         },
@@ -684,7 +714,7 @@
             "priv_reqs": [ "soc", "hal" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_rom/libesp_rom.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_rom/libesp_rom.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/patches/esp_rom_sys.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/patches/esp_rom_print.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/patches/esp_rom_crc.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/patches/esp_rom_uart.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/patches/esp_rom_spiflash.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/patches/esp_rom_efuse.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/patches/esp_rom_gpio.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_rom/patches/esp_rom_systimer.c" ],
             "include_dirs": [ "include", "esp32c3/include", "esp32c3/include/esp32c3", "esp32c3" ]
         },
@@ -699,7 +729,7 @@
             "priv_reqs": [ "efuse", "esp_hw_support", "esp_system", "esp_timer" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_security/libesp_security.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_security/libesp_security.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_security/src/init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_security/src/esp_hmac.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_security/src/esp_ds.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_security/src/esp_crypto_lock.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_security/src/esp_crypto_periph_clk.c" ],
             "include_dirs": [ "include" ]
         },
@@ -714,7 +744,7 @@
             "priv_reqs": [ "spi_flash", "esp_timer", "esp_mm", "bootloader_support", "esp_pm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_system/libesp_system.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_system/libesp_system.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/esp_err.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/crosscore_int.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/esp_ipc.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/esp_system_console.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/freertos_hooks.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/int_wdt.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/panic.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/esp_system.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/startup.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/startup_funcs.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/system_time.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/stack_check.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/ubsan.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/xt_wdt.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/task_wdt/task_wdt.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/task_wdt/task_wdt_impl_timergroup.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/hw_stack_guard.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/cpu_start.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/panic_handler.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/esp_system_chip.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/image_process.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/arch/riscv/expression_with_stack.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/arch/riscv/panic_arch.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/arch/riscv/debug_helpers.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/arch/riscv/debug_stubs.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/soc/esp32c3/clk.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/soc/esp32c3/reset_reason.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/soc/esp32c3/system_internal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/soc/esp32c3/cache_err_int.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_system/port/soc/esp32c3/apb_backup_dma.c" ],
             "include_dirs": [ "include" ]
         },
@@ -729,7 +759,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_timer/libesp_timer.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_timer/libesp_timer.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_timer/src/esp_timer.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_timer/src/esp_timer_init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_timer/src/ets_timer_legacy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_timer/src/system_time.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_timer/src/esp_timer_impl_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_timer/src/esp_timer_impl_systimer.c" ],
             "include_dirs": [ "include" ]
         },
@@ -744,7 +774,7 @@
             "priv_reqs": [ "vfs", "esp_driver_uart", "esp_driver_usb_serial_jtag" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_vfs_console/libesp_vfs_console.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_vfs_console/libesp_vfs_console.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_vfs_console/vfs_console.c" ],
             "include_dirs": [ "include" ]
         },
@@ -759,7 +789,7 @@
             "priv_reqs": [ "esptool_py", "esp_pm", "esp_timer", "nvs_flash", "wpa_supplicant", "hal", "lwip", "esp_coex" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/esp_wifi/libesp_wifi.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/esp_wifi/libesp_wifi.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/src/lib_printf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/src/mesh_event.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/src/smartconfig.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/src/wifi_init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/src/wifi_default.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/src/wifi_netif.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/src/wifi_default_ap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/esp32c3/esp_adapter.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/regulatory/esp_wifi_regulatory.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/esp_wifi/src/smartconfig_ack.c" ],
             "include_dirs": [ "include", "include/local", "wifi_apps/include", "wifi_apps/nan_app/include" ]
         },
@@ -767,45 +797,45 @@
             "alias": "idf::espressif__esp_io_expander",
             "target": "___idf_espressif__esp_io_expander",
             "prefix": "idf",
-            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander",
             "type": "LIBRARY",
             "lib": "__idf_espressif__esp_io_expander",
             "reqs": [],
             "priv_reqs": [ "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/espressif__esp_io_expander/libespressif__esp_io_expander.a",
-            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander/esp_io_expander.c" ],
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/espressif__esp_io_expander/libespressif__esp_io_expander.a",
+            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander/esp_io_expander.c" ],
             "include_dirs": [ "include" ]
         },
         "espressif__esp_io_expander_tca9554": {
             "alias": "idf::espressif__esp_io_expander_tca9554",
             "target": "___idf_espressif__esp_io_expander_tca9554",
             "prefix": "idf",
-            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander_tca9554",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander_tca9554",
             "type": "LIBRARY",
             "lib": "__idf_espressif__esp_io_expander_tca9554",
             "reqs": [ "driver", "espressif__esp_io_expander" ],
             "priv_reqs": [],
             "managed_reqs": [ "espressif__esp_io_expander" ],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/espressif__esp_io_expander_tca9554/libespressif__esp_io_expander_tca9554.a",
-            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander_tca9554/esp_io_expander_tca9554.c" ],
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/espressif__esp_io_expander_tca9554/libespressif__esp_io_expander_tca9554.a",
+            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander_tca9554/esp_io_expander_tca9554.c" ],
             "include_dirs": [ "include" ]
         },
         "espressif__esp_io_expander_tca95xx_16bit": {
             "alias": "idf::espressif__esp_io_expander_tca95xx_16bit",
             "target": "___idf_espressif__esp_io_expander_tca95xx_16bit",
             "prefix": "idf",
-            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander_tca95xx_16bit",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander_tca95xx_16bit",
             "type": "LIBRARY",
             "lib": "__idf_espressif__esp_io_expander_tca95xx_16bit",
             "reqs": [ "esp_driver_i2c", "espressif__esp_io_expander" ],
             "priv_reqs": [],
             "managed_reqs": [ "espressif__esp_io_expander" ],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/espressif__esp_io_expander_tca95xx_16bit/libespressif__esp_io_expander_tca95xx_16bit.a",
-            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander_tca95xx_16bit/esp_io_expander_tca95xx_16bit.c" ],
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/espressif__esp_io_expander_tca95xx_16bit/libespressif__esp_io_expander_tca95xx_16bit.a",
+            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander_tca95xx_16bit/esp_io_expander_tca95xx_16bit.c" ],
             "include_dirs": [ "include" ]
         },
         "esptool_py": {
@@ -834,7 +864,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/freertos/libfreertos.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/freertos/libfreertos.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/heap_idf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/app_startup.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/port_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/port_systick.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/FreeRTOS-Kernel/list.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/FreeRTOS-Kernel/timers.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/FreeRTOS-Kernel/event_groups.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/FreeRTOS-Kernel/stream_buffer.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/portasm.S", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/esp_additions/freertos_compatibility.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/esp_additions/idf_additions_event_groups.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/freertos/esp_additions/idf_additions.c" ],
             "include_dirs": [ "config/include", "config/include/freertos", "config/riscv/include", "FreeRTOS-Kernel/include", "FreeRTOS-Kernel/portable/riscv/include", "FreeRTOS-Kernel/portable/riscv/include/freertos", "esp_additions/include" ]
         },
@@ -849,7 +879,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/hal/libhal.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/hal/libhal.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/hal_utils.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/efuse_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/esp32c3/efuse_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/wdt_hal_iram.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/mmu_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/cache_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/color_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/spi_flash_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/spi_flash_hal_iram.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/spi_flash_encrypt_hal_iram.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/esp32c3/clk_tree_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/systimer_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/uart_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/uart_hal_iram.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/gpio_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/timer_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/ledc_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/ledc_hal_iram.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/i2c_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/i2c_hal_iram.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/rmt_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/uhci_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/twai_hal_v1.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/gdma_hal_top.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/gdma_hal_ahb_v1.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/i2s_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/sdm_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/adc_hal_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/adc_oneshot_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/adc_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/mpi_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/sha_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/aes_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/brownout_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/spi_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/spi_hal_iram.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/spi_slave_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/spi_slave_hal_iram.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/spi_slave_hd_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/spi_flash_hal_gpspi.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/hmac_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/ds_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/usb_serial_jtag_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/xt_wdt_hal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/hal/esp32c3/rtc_cntl_hal.c" ],
             "include_dirs": [ "platform_port/include", "esp32c3/include", "include" ]
         },
@@ -864,7 +894,7 @@
             "priv_reqs": [ "soc" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/heap/libheap.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/heap/libheap.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/heap/heap_caps_base.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/heap/heap_caps.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/heap/heap_caps_init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/heap/multi_heap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/heap/tlsf/tlsf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/heap/port/memory_layout_utils.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/heap/port/esp32c3/memory_layout.c" ],
             "include_dirs": [ "include", "tlsf" ]
         },
@@ -879,9 +909,24 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/http_parser/libhttp_parser.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/http_parser/libhttp_parser.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/http_parser/http_parser.c" ],
             "include_dirs": [ "." ]
+        },
+        "ieee802154": {
+            "alias": "idf::ieee802154",
+            "target": "___idf_ieee802154",
+            "prefix": "idf",
+            "dir": "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/ieee802154",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_ieee802154",
+            "reqs": [ "esp_coex" ],
+            "priv_reqs": [ "esp_phy", "esp_timer", "soc", "hal", "esp_pm" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": [ "include" ]
         },
         "json": {
             "alias": "idf::json",
@@ -894,7 +939,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/json/libjson.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/json/libjson.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/json/cJSON/cJSON.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/json/cJSON/cJSON_Utils.c" ],
             "include_dirs": [ "cJSON" ]
         },
@@ -909,7 +954,7 @@
             "priv_reqs": [ "hal", "soc", "esp_hw_support" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/log/liblog.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/log/liblog.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/os/log_timestamp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/log_timestamp_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/os/log_lock.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/buffer/log_buffers.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/os/util.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/util.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/log_format_text.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/log_print.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/log.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/os/log_write.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/log_level/log_level.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/log_level/tag_log_level/tag_log_level.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/log/src/log_level/tag_log_level/cache/log_binary_heap.c" ],
             "include_dirs": [ "include" ]
         },
@@ -924,7 +969,7 @@
             "priv_reqs": [ "vfs" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/lwip/liblwip.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/lwip/liblwip.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/apps/sntp/sntp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/api/api_lib.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/api/api_msg.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/api/err.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/api/if_api.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/api/netbuf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/api/netdb.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/api/netifapi.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/api/sockets.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/api/tcpip.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/apps/sntp/sntp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/apps/netbiosns/netbiosns.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/def.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/dns.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/inet_chksum.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ip.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/mem.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/memp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/netif.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/pbuf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/raw.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/stats.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/sys.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/tcp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/tcp_in.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/tcp_out.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/timeouts.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/udp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv4/autoip.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv4/dhcp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv4/etharp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv4/icmp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv4/igmp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv4/ip4.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv4/ip4_napt.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv4/ip4_addr.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv4/ip4_frag.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv6/dhcp6.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv6/ethip6.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv6/icmp6.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv6/inet6.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv6/ip6.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv6/ip6_addr.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv6/ip6_frag.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv6/mld6.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/core/ipv6/nd6.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ethernet.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/bridgeif.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/bridgeif_fdb.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/slipif.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/auth.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/ccp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/chap-md5.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/chap-new.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/chap_ms.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/demand.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/eap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/ecp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/eui64.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/fsm.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/ipcp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/ipv6cp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/lcp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/magic.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/mppe.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/multilink.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/ppp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/pppapi.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/pppcrypt.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/pppoe.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/pppol2tp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/pppos.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/upap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/utils.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/vj.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/port/hooks/tcp_isn_default.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/port/hooks/lwip_default_hooks.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/port/debug/lwip_debug.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/port/sockets_ext.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/port/freertos/sys_arch.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/port/if_index.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/port/acd_dhcp_check.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/port/esp32xx/vfs_lwip.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/apps/ping/esp_ping.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/apps/ping/ping.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/apps/ping/ping_sock.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/polarssl/arc4.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/polarssl/des.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/polarssl/md4.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/polarssl/md5.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/lwip/src/netif/ppp/polarssl/sha1.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/lwip/apps/dhcpserver/dhcpserver.c" ],
             "include_dirs": [ "include", "include/apps", "include/apps/sntp", "lwip/src/include", "port/include", "port/freertos/include/", "port/esp32xx/include", "port/esp32xx/include/arch", "port/esp32xx/include/sys" ]
         },
@@ -932,16 +977,16 @@
             "alias": "idf::main",
             "target": "___idf_main",
             "prefix": "idf",
-            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main",
             "type": "LIBRARY",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "spi_flash", "mqtt", "nvs_flash", "esp_netif", "json", "driver", "esp_wifi", "esp_http_server", "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit" ],
+            "priv_reqs": [ "spi_flash", "mqtt", "nvs_flash", "esp_netif", "json", "driver", "esp_wifi", "esp_http_server", "xn_web_wifi_manger", "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit", "protocol_examples_common" ],
             "managed_reqs": [],
-            "managed_priv_reqs": [ "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit" ],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/main/libmain.a",
-            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main/main.cpp", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main/DHT11/bsp_dht11.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main/ML307/ml307_mqtt_client.cpp", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main/XL9555/xl9555_ir_counter.c" ],
-            "include_dirs": [ ".", "DHT11", "XL9555", "ML307" ]
+            "managed_priv_reqs": [ "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit", "protocol_examples_common" ],
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/main/libmain.a",
+            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/main.cpp", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/DHT11/bsp_dht11.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/ML307/ml307_mqtt_client.cpp", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/XL9555/xl9555_ir_counter.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/WIFI_MQTT/beehive_system.c" ],
+            "include_dirs": [ ".", "DHT11", "XL9555", "ML307", "WIFI_MQTT" ]
         },
         "mbedtls": {
             "alias": "idf::mbedtls",
@@ -954,8 +999,8 @@
             "priv_reqs": [ "soc", "esp_hw_support", "esp_pm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/mbedtls/libmbedtls.a",
-            "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mbedtls/esp_crt_bundle/esp_crt_bundle.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/x509_crt_bundle.S" ],
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/mbedtls/libmbedtls.a",
+            "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mbedtls/esp_crt_bundle/esp_crt_bundle.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/x509_crt_bundle.S" ],
             "include_dirs": [ "port/include", "mbedtls/include", "mbedtls/library", "esp_crt_bundle/include" ]
         },
         "mqtt": {
@@ -969,7 +1014,7 @@
             "priv_reqs": [ "esp_timer", "http_parser", "esp_hw_support", "heap" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/mqtt/libmqtt.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/mqtt/libmqtt.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mqtt/esp-mqtt/mqtt_client.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mqtt/esp-mqtt/lib/mqtt_msg.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mqtt/esp-mqtt/lib/mqtt_outbox.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mqtt/esp-mqtt/lib/platform_esp32_idf.c" ],
             "include_dirs": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/mqtt/esp-mqtt/include" ]
         },
@@ -984,7 +1029,7 @@
             "priv_reqs": [ "soc", "spi_flash" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/newlib/libnewlib.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/newlib/libnewlib.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/abort.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/assert.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/heap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/locks.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/poll.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/pthread.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/random.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/getentropy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/termios.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/stdatomic.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/time.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/sysconf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/realpath.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/scandir.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/syscalls.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/reent_syscalls.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/port/esp_time_impl.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/flockfile.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/reent_init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/newlib_init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/newlib/src/port/esp_time_impl.c" ],
             "include_dirs": [ "platform_include" ]
         },
@@ -999,9 +1044,24 @@
             "priv_reqs": [ "spi_flash", "newlib" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/nvs_flash/libnvs_flash.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/nvs_flash/libnvs_flash.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_api.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_cxx_api.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_item_hash_list.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_page.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_pagemanager.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_storage.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_handle_simple.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_handle_locked.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_partition.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_partition_lookup.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_types.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_platform.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_bootloader.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_encrypted_partition.cpp", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_bootloader_aes.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/nvs_flash/src/nvs_bootloader_xts_aes.c" ],
             "include_dirs": [ "include" ]
+        },
+        "openthread": {
+            "alias": "idf::openthread",
+            "target": "___idf_openthread",
+            "prefix": "idf",
+            "dir": "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/openthread",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_openthread",
+            "reqs": [ "esp_netif", "lwip", "esp_driver_uart", "driver" ],
+            "priv_reqs": [ "console", "esp_coex", "esp_event", "esp_partition", "esp_timer", "ieee802154", "mbedtls", "nvs_flash" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": []
         },
         "partition_table": {
             "alias": "idf::partition_table",
@@ -1018,6 +1078,21 @@
             "sources": [],
             "include_dirs": []
         },
+        "protocol_examples_common": {
+            "alias": "idf::protocol_examples_common",
+            "target": "___idf_protocol_examples_common",
+            "prefix": "idf",
+            "dir": "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/examples/common_components/protocol_examples_common",
+            "type": "LIBRARY",
+            "lib": "__idf_protocol_examples_common",
+            "reqs": [],
+            "priv_reqs": [ "esp_netif", "esp_driver_gpio", "esp_driver_uart", "esp_wifi", "vfs", "console", "esp_eth", "openthread" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/protocol_examples_common/libprotocol_examples_common.a",
+            "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/examples/common_components/protocol_examples_common/stdin_out.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/examples/common_components/protocol_examples_common/addr_from_stdin.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/examples/common_components/protocol_examples_common/connect.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/examples/common_components/protocol_examples_common/wifi_connect.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/examples/common_components/protocol_examples_common/protocol_examples_utils.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/examples/common_components/protocol_examples_common/console_cmd.c" ],
+            "include_dirs": [ "include" ]
+        },
         "pthread": {
             "alias": "idf::pthread",
             "target": "___idf_pthread",
@@ -1029,7 +1104,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/pthread/libpthread.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/pthread/libpthread.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/pthread/pthread.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/pthread/pthread_cond_var.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/pthread/pthread_local_storage.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/pthread/pthread_rwlock.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/pthread/pthread_semaphore.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1044,7 +1119,7 @@
             "priv_reqs": [ "soc", "hal" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/riscv/libriscv.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/riscv/libriscv.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/riscv/instruction_decode.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/riscv/interrupt.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/riscv/rv_utils.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/riscv/vectors.S", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/riscv/interrupt_intc.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/riscv/vectors_intc.S" ],
             "include_dirs": [ "include" ]
         },
@@ -1059,7 +1134,7 @@
             "priv_reqs": [ "soc", "esp_timer", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/sdmmc/libsdmmc.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/sdmmc/libsdmmc.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/sdmmc/sdmmc_cmd.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/sdmmc/sdmmc_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/sdmmc/sdmmc_init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/sdmmc/sdmmc_io.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/sdmmc/sdmmc_mmc.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/sdmmc/sdmmc_sd.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/sdmmc/sd_pwr_ctrl/sd_pwr_ctrl.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1074,7 +1149,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/soc/libsoc.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/soc/libsoc.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/lldesc.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/dport_access_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/interrupts.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/gpio_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/uart_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/adc_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/dedic_gpio_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/gdma_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/spi_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/ledc_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/rmt_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/sdm_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/i2s_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/i2c_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/temperature_sensor_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/timer_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/mpi_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/twai_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/wdt_periph.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/soc/esp32c3/power_supply_periph.c" ],
             "include_dirs": [ "include", "esp32c3", "esp32c3/include", "esp32c3/register" ]
         },
@@ -1089,8 +1164,23 @@
             "priv_reqs": [ "bootloader_support", "app_update", "soc", "esp_mm", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/spi_flash/libspi_flash.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/spi_flash/libspi_flash.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/flash_brownout_hook.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_chip_drivers.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_chip_generic.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_chip_issi.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_chip_mxic.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_chip_gd.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_chip_winbond.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_chip_boya.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_chip_mxic_opi.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_chip_th.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/memspi_host_driver.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/cache_utils.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/flash_mmap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/flash_ops.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_wrap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/esp_flash_api.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/esp_flash_spi_init.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_os_func_app.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spi_flash/spi_flash_os_func_noos.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "spiffs": {
+            "alias": "idf::spiffs",
+            "target": "___idf_spiffs",
+            "prefix": "idf",
+            "dir": "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spiffs",
+            "type": "LIBRARY",
+            "lib": "__idf_spiffs",
+            "reqs": [ "esp_partition" ],
+            "priv_reqs": [ "bootloader_support", "esptool_py", "vfs" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/spiffs/libspiffs.a",
+            "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spiffs/spiffs_api.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spiffs/spiffs/src/spiffs_cache.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spiffs/spiffs/src/spiffs_check.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spiffs/spiffs/src/spiffs_gc.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spiffs/spiffs/src/spiffs_hydrogen.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spiffs/spiffs/src/spiffs_nucleus.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/spiffs/esp_spiffs.c" ],
             "include_dirs": [ "include" ]
         },
         "tcp_transport": {
@@ -1104,7 +1194,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/tcp_transport/libtcp_transport.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/tcp_transport/libtcp_transport.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/tcp_transport/transport.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/tcp_transport/transport_ssl.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/tcp_transport/transport_internal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/tcp_transport/transport_socks_proxy.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/tcp_transport/transport_ws.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1119,7 +1209,7 @@
             "priv_reqs": [ "esp_timer", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_vfs_console" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/vfs/libvfs.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/vfs/libvfs.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/vfs/vfs.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/vfs/vfs_eventfd.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/vfs/vfs_semihost.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/vfs/nullfs.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1134,9 +1224,24 @@
             "priv_reqs": [ "mbedtls", "esp_timer", "esp_wifi" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/esp-idf/wpa_supplicant/libwpa_supplicant.a",
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/wpa_supplicant/libwpa_supplicant.a",
             "sources": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/port/os_xtensa.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/port/eloop.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/ap/ap_config.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/ap/ieee802_1x.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/ap/wpa_auth.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/ap/wpa_auth_ie.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/ap/pmksa_cache_auth.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/ap/sta_info.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/ap/ieee802_11.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/ap/comeback_token.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/common/sae.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/common/dragonfly.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/common/wpa_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/utils/bitfield.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/aes-siv.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/sha256-kdf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/ccmp.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/aes-gcm.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/crypto_ops.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/dh_group5.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/dh_groups.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/ms_funcs.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/sha1-tlsprf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/sha256-tlsprf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/sha384-tlsprf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/sha256-prf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/sha1-prf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/sha384-prf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/md4-internal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/sha1-tprf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_common/eap_wsc_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/common/ieee802_11_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/chap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/eap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/eap_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/eap_mschapv2.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/eap_peap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/eap_peap_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/eap_tls.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/eap_tls_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/eap_ttls.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/mschapv2.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/eap_fast.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/eap_fast_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/eap_peer/eap_fast_pac.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/rsn_supp/pmksa_cache.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/rsn_supp/wpa.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/rsn_supp/wpa_ie.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/utils/base64.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/utils/common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/utils/ext_password.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/utils/uuid.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/utils/wpabuf.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/utils/wpa_debug.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/utils/json.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/wps/wps.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/wps/wps_attr_build.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/wps/wps_attr_parse.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/wps/wps_attr_process.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/wps/wps_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/wps/wps_dev_attr.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/wps/wps_enrollee.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/common/sae_pk.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_eap_client.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_wpa2_api_port.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_wpa_main.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_wpas_glue.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_common.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_wps.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_wpa3.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_owe.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_hostap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/tls_mbedtls.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/crypto_mbedtls.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/crypto_mbedtls-bignum.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/crypto_mbedtls-rsa.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/crypto_mbedtls-ec.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/fastpsk.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/rc4.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/des-internal.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/fastpbkdf2.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/aes-wrap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/aes-unwrap.c", "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/wpa_supplicant/src/crypto/aes-ccm.c" ],
             "include_dirs": [ "include", "port/include", "esp_supplicant/include" ]
+        },
+        "xn_web_wifi_manger": {
+            "alias": "idf::xn_web_wifi_manger",
+            "target": "___idf_xn_web_wifi_manger",
+            "prefix": "idf",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/components/xn_web_wifi_manger",
+            "type": "LIBRARY",
+            "lib": "__idf_xn_web_wifi_manger",
+            "reqs": [ "esp_http_server", "spiffs", "esp_wifi", "nvs_flash" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/xn_web_wifi_manger/libxn_web_wifi_manger.a",
+            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/components/xn_web_wifi_manger/src/xn_wifi_manage.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/components/xn_web_wifi_manger/src/wifi_module.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/components/xn_web_wifi_manger/src/web_module.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/components/xn_web_wifi_manger/src/storage_module.c" ],
+            "include_dirs": [ "include" ]
         }
     },
     "all_component_info" : {
@@ -1222,7 +1327,7 @@
             "priv_reqs": [ "esp_driver_uart", "esp_driver_usb_serial_jtag" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build" ]
+            "include_dirs": [ "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/components/console" ]
         },
         "cxx": {
             "alias": "idf::cxx",
@@ -1654,7 +1759,7 @@
             "priv_reqs": [ "log", "esp_timer", "esp_driver_spi", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": []
+            "include_dirs": [ "include" ]
         },
         "esp_event": {
             "alias": "idf::esp_event",
@@ -2440,19 +2545,43 @@
             "alias": "idf::main",
             "target": "___idf_main",
             "prefix": "idf",
-            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/main",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main",
             "lib": "__idf_main",
             "reqs": [],
-            "priv_reqs": [ "spi_flash", "mqtt", "nvs_flash", "esp_netif", "json", "driver", "esp_wifi", "esp_http_server", "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit" ],
+            "priv_reqs": [ "spi_flash", "mqtt", "nvs_flash", "esp_netif", "json", "driver", "esp_wifi", "esp_http_server", "xn_web_wifi_manger", "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit", "protocol_examples_common" ],
             "managed_reqs": [],
-            "managed_priv_reqs": [ "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit" ],
-            "include_dirs": [ ".", "DHT11", "XL9555", "ML307" ]
+            "managed_priv_reqs": [ "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit", "protocol_examples_common" ],
+            "include_dirs": [ ".", "DHT11", "XL9555", "ML307", "WIFI_MQTT" ]
+        },
+        "xn_web_wifi_manger": {
+            "alias": "idf::xn_web_wifi_manger",
+            "target": "___idf_xn_web_wifi_manger",
+            "prefix": "idf",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/components/xn_web_wifi_manger",
+            "lib": "__idf_xn_web_wifi_manger",
+            "reqs": [ "esp_http_server", "spiffs", "esp_wifi", "nvs_flash" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "include_dirs": [ "include" ]
+        },
+        "protocol_examples_common": {
+            "alias": "idf::protocol_examples_common",
+            "target": "___idf_protocol_examples_common",
+            "prefix": "idf",
+            "dir": "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf/examples/common_components/protocol_examples_common",
+            "lib": "__idf_protocol_examples_common",
+            "reqs": [],
+            "priv_reqs": [ "esp_netif", "esp_driver_gpio", "esp_driver_uart", "esp_wifi", "vfs", "console", "esp_eth", "openthread" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "include_dirs": [ "include" ]
         },
         "78__esp-ml307": {
             "alias": "idf::78__esp-ml307",
             "target": "___idf_78__esp-ml307",
             "prefix": "idf",
-            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/78__esp-ml307",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/78__esp-ml307",
             "lib": "__idf_78__esp-ml307",
             "reqs": [ "esp_driver_gpio", "esp_driver_uart", "esp_pm", "esp-tls", "pthread", "mqtt" ],
             "priv_reqs": [],
@@ -2464,7 +2593,7 @@
             "alias": "idf::espressif__esp_io_expander",
             "target": "___idf_espressif__esp_io_expander",
             "prefix": "idf",
-            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander",
             "lib": "__idf_espressif__esp_io_expander",
             "reqs": [],
             "priv_reqs": [ "esp_driver_gpio" ],
@@ -2476,7 +2605,7 @@
             "alias": "idf::espressif__esp_io_expander_tca9554",
             "target": "___idf_espressif__esp_io_expander_tca9554",
             "prefix": "idf",
-            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander_tca9554",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander_tca9554",
             "lib": "__idf_espressif__esp_io_expander_tca9554",
             "reqs": [ "driver", "espressif__esp_io_expander" ],
             "priv_reqs": [],
@@ -2488,7 +2617,7 @@
             "alias": "idf::espressif__esp_io_expander_tca95xx_16bit",
             "target": "___idf_espressif__esp_io_expander_tca95xx_16bit",
             "prefix": "idf",
-            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/managed_components/espressif__esp_io_expander_tca95xx_16bit",
+            "dir": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/managed_components/espressif__esp_io_expander_tca95xx_16bit",
             "lib": "__idf_espressif__esp_io_expander_tca95xx_16bit",
             "reqs": [ "esp_driver_i2c", "espressif__esp_io_expander" ],
             "priv_reqs": [],
@@ -2499,10 +2628,10 @@
     },
     "debug_prefix_map_gdbinit": "",
     "gdbinit_files": {
-        "01_symbols": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/gdbinit/symbols",
-        "02_prefix_map": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/gdbinit/prefix_map",
-        "03_py_extensions": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/gdbinit/py_extensions",
-        "04_connect": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G/build/gdbinit/connect"
+        "01_symbols": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/gdbinit/symbols",
+        "02_prefix_map": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/gdbinit/prefix_map",
+        "03_py_extensions": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/gdbinit/py_extensions",
+        "04_connect": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/gdbinit/connect"
     },
     "debug_arguments_openocd": "-f board/esp32c3-builtin.cfg"
 }

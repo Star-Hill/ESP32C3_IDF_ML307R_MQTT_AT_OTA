@@ -152,14 +152,15 @@ void DHT11(void) // 温湿传感启动
         }
         else
         {
-            Humi = 100;
-            Temp = 100;
+            // 这里没有上限值
+            // Humi = 100;
+            // Temp = 100;
         }
     }
-    else // 没用成功读取，返回0
+    else // 没用成功读取，返回0 也不做处理
     {
-        Humi = 0,
-        Temp = 0;
+        // Humi = 0,
+        // Temp = 0;
     }
 
     OutputHigh(); // 输出
@@ -196,7 +197,7 @@ void dht11_task_start(void)
     printf("DHT11 Temperature & Humidity Monitor\n");
     printf("========================================\n");
 
-        if (dht11_task_handle != NULL)
+    if (dht11_task_handle != NULL)
     {
         printf("[DHT11] Task already running!\n");
         return;

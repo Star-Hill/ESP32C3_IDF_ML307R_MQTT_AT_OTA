@@ -6,7 +6,7 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: hello_world
+# Project: BeeHive_Vscode_4G
 # Configurations: 
 # =============================================================================
 # =============================================================================
@@ -14,7 +14,7 @@
 #############################################
 # Rule for compiling C files.
 
-rule C_COMPILER__hello_world.2eelf_unscanned_
+rule C_COMPILER__BeeHive_Vscode_4G.2eelf_unscanned_
   depfile = $DEP_FILE
   deps = gcc
   command = ${LAUNCHER}${CODE_CHECK}D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -24,7 +24,7 @@ rule C_COMPILER__hello_world.2eelf_unscanned_
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__hello_world.2eelf_
+rule CXX_EXECUTABLE_LINKER__BeeHive_Vscode_4G.2eelf_
   command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-g++.exe $FLAGS $LINK_FLAGS @$RSP_FILE -o $TARGET_FILE && $POST_BUILD"
   description = Linking CXX executable $TARGET_FILE
   rspfile = $RSP_FILE
@@ -1263,6 +1263,44 @@ rule C_STATIC_LIBRARY_LINKER____idf_esp_http_server_
 
 
 #############################################
+# Rule for compiling C files.
+
+rule C_COMPILER____idf_spiffs_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER____idf_spiffs_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && D:\Program\C\Espidf552\IDF_TOOLS552\tools\cmake\3.30.2\bin\cmake.exe -E rm -f $TARGET_FILE && D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-ar.exe qc $TARGET_FILE $LINK_FLAGS $in && D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER____idf_xn_web_wifi_manger_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER____idf_xn_web_wifi_manger_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && D:\Program\C\Espidf552\IDF_TOOLS552\tools\cmake\3.30.2\bin\cmake.exe -E rm -f $TARGET_FILE && D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-ar.exe qc $TARGET_FILE $LINK_FLAGS $in && D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
 # Rule for compiling CXX files.
 
 rule CXX_COMPILER____idf_78__esp-ml307_unscanned_
@@ -1341,6 +1379,63 @@ rule C_STATIC_LIBRARY_LINKER____idf_espressif__esp_io_expander_tca95xx_16bit_
 #############################################
 # Rule for compiling C files.
 
+rule C_COMPILER____idf_console_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER____idf_console_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && D:\Program\C\Espidf552\IDF_TOOLS552\tools\cmake\3.30.2\bin\cmake.exe -E rm -f $TARGET_FILE && D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-ar.exe qc $TARGET_FILE $LINK_FLAGS $in && D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER____idf_esp_eth_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER____idf_esp_eth_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && D:\Program\C\Espidf552\IDF_TOOLS552\tools\cmake\3.30.2\bin\cmake.exe -E rm -f $TARGET_FILE && D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-ar.exe qc $TARGET_FILE $LINK_FLAGS $in && D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
+rule C_COMPILER____idf_protocol_examples_common_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER____idf_protocol_examples_common_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && D:\Program\C\Espidf552\IDF_TOOLS552\tools\cmake\3.30.2\bin\cmake.exe -E rm -f $TARGET_FILE && D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-ar.exe qc $TARGET_FILE $LINK_FLAGS $in && D:\Program\C\Espidf552\IDF_TOOLS552\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling C files.
+
 rule C_COMPILER____idf_main_unscanned_
   depfile = $DEP_FILE
   deps = gcc
@@ -1371,7 +1466,7 @@ rule C_STATIC_LIBRARY_LINKER____idf_main_
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = D:\Program\C\Espidf552\IDF_TOOLS552\tools\cmake\3.30.2\bin\cmake.exe --regenerate-during-build -SD:\Program_Workspace\ESP_Workspace\ESP32S3R16N8\BeeHive_Vscode\BeeHive_Vscode_4G -BD:\Program_Workspace\ESP_Workspace\ESP32S3R16N8\BeeHive_Vscode\BeeHive_Vscode_4G\build
+  command = D:\Program\C\Espidf552\IDF_TOOLS552\tools\cmake\3.30.2\bin\cmake.exe --regenerate-during-build -SD:\Program_Workspace\ESP_Workspace\ESP32S3R16N8\BeeHive_Vscode\BeeHive_Vscode_4G_WIFI -BD:\Program_Workspace\ESP_Workspace\ESP32S3R16N8\BeeHive_Vscode\BeeHive_Vscode_4G_WIFI\build
   description = Re-running CMake...
   generator = 1
 

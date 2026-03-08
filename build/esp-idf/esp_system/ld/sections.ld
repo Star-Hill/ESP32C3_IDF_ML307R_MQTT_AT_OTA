@@ -1,6 +1,6 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
-/* Generated from: D:\Program_Workspace\ESP_Workspace\ESP32S3R16N8\BeeHive_Vscode\BeeHive_Vscode_4G\build\esp-idf\esp_system\ld\sections.ld.in */
+/* Generated from: D:\Program_Workspace\ESP_Workspace\ESP32S3R16N8\BeeHive_Vscode\BeeHive_Vscode_4G_WIFI\build\esp-idf\esp_system\ld\sections.ld.in */
 
 /*
 

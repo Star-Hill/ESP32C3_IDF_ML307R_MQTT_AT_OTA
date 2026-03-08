@@ -399,3 +399,27 @@ uint32_t mqtt_client_get_message_count(void)
 {
     return message_count_;
 }
+
+// 回调1: 构建 JSON 消息
+int mqtt_build_message(char *buffer, size_t buffer_size, uint32_t message_count)
+{
+    // 从 DHT11 获取实时温湿度
+    float temp = dht11_get_temperature();
+    float humid = dht11_get_humidity();
+
+    // 拼接 JSON
+    return snprintf(buffer, buffer_size,
+        "{\"device\":\"BeeHive\",\"temp\":%.1f,\"humid\":%.1f,\"count\":%lu}",
+        temp, humid, message_count);
+}
+
+// 回调2: 处理收到的消息
+void mqtt_on_message(const char *topic, const char *payload, size_t payload_len)
+{
+    if (strncmp(payload, "led_on", 6) == 0) {
+        // 打开 LED
+    }
+}
+
+
+
