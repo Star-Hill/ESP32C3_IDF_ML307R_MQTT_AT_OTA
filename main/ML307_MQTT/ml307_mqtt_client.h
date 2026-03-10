@@ -1,7 +1,10 @@
-/**
- * @file ml307_mqtt_client.h
- * @brief ML307 MQTT 客户端模块 - 头文件
- * 
+/*
+ * @Author: Stathill星丘 && cishaxiatian@gmail.com
+ * @Date: 2026-03-07 13:35:31
+ * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
+ * @LastEditTime: 2026-03-10 01:18:34
+ * @FilePath: \BeeHive_Vscode_4G_WIFI\main\ML307_MQTT\ml307_mqtt_client.h
+ * @Description: ML307 MQTT 客户端模块 - 头文件
  * 使用方法：
  * 1. 在 ml307_mqtt_config.h 中配置 MQTT 参数
  * 2. 在 main.cpp 中实现 mqtt_build_message() 和 mqtt_on_message()

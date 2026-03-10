@@ -2,7 +2,7 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-05 17:21:09
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-08 13:48:58
+ * @LastEditTime: 2026-03-09 15:05:16
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\main.cpp
  * @Description: 主函数，启动整个系统
  */
@@ -32,12 +32,13 @@
 
 extern "C" {
     #include "xn_wifi_manage.h"
-    
 }
 
 #include "beehive_system.h"
 #include "ml307_mqtt_client.h"
 #include "ml307_mqtt_config.h"
+#include "wifi_sntp_time.h"
+#include "ml307_sntp_time.h"
 
 static const char *TAG = "MAIN";
 
@@ -53,8 +54,17 @@ extern "C" void app_main(void)
     // ESP_ERROR_CHECK(xl9555_ir_counter_start());
     ESP_LOGI(TAG, "System ready.");
 
-    // ✨ 一行代码启动整个系统（WiFi + MQTT + 超时检测）
+    // ✨ 一行代码启动整个系统（WiFi + ML407R + MQTT + 超时检测）
     beehive_system_start();
+
+    // 3. 启动时间显示（一行代码）
+    ESP_LOGI(TAG, "✅ 时间显示模块已启动");
+    // wifi_time_display_start();
+
+    vTaskDelay(pdMS_TO_TICKS(20000));
+
+    // 3. 启动时间同步任务 (一行代码搞定!)
+    ml307_sntp_time_start();
 
     // 主循环：可以在这里添加其他功能
     while (1)

@@ -2,8 +2,8 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-06 13:34:25
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-08 11:28:30
- * @FilePath: \BeeHive_Vscode_4G\main\XL9555\xl9555_ir_counter.c
+ * @LastEditTime: 2026-03-10 09:12:27
+ * @FilePath: \BeeHive_Vscode_4G_WIFI\main\XL9555\xl9555_ir_counter.c
  * @Description: XL9555 16路红外计数模块 —— INT中断驱动，源文件
  */
 

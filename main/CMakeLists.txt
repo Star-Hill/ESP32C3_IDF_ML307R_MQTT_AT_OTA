@@ -2,9 +2,11 @@ idf_component_register(
     SRCS 
         "main.cpp" 
         "DHT11/bsp_dht11.c" 
-        "ML307/ml307_mqtt_client.cpp"
+        "ML307_MQTT/ml307_mqtt_client.cpp"
         "XL9555/xl9555_ir_counter.c"
         "WIFI_MQTT/beehive_system.c"
+        "TIME/wifi_sntp_time.c"
+        "TIME/ml307_sntp_time.cpp"
         
 
     PRIV_REQUIRES 
@@ -23,8 +25,9 @@ idf_component_register(
         "."
         "DHT11"
         "XL9555"
-        "ML307"
+        "ML307_MQTT"
         "WIFI_MQTT"
+        "TIME"
 )
 
 # 添加 ML307 组件的内部头文件路径

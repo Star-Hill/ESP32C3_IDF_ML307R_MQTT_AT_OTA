@@ -1,8 +1,11 @@
-/**
- * @file ml307_mqtt_client.cpp
- * @brief ML307 MQTT 客户端模块 - 实现文件
+/*
+ * @Author: Stathill星丘 && cishaxiatian@gmail.com
+ * @Date: 2026-03-07 13:35:36
+ * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
+ * @LastEditTime: 2026-03-10 01:18:05
+ * @FilePath: \BeeHive_Vscode_4G_WIFI\main\ML307_MQTT\ml307_mqtt_client.cpp
+ * @Description: ML307 MQTT 客户端模块 - 实现文件（极简版，专注于连接和日志输出）
  */
-
 #include "ml307_mqtt_client.h"
 #include "ml307_mqtt_config.h"
 
@@ -10,6 +13,7 @@
 #include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/semphr.h"
 #include "esp_log.h"
 #include "esp_system.h"
 
@@ -31,6 +35,11 @@ static std::unique_ptr<Ml307Mqtt> mqtt_;
 static bool is_connected_ = false;
 static bool is_running_ = false;
 static uint32_t message_count_ = 0;
+
+// 用于接收CCLK响应的全局变量
+static std::string cclk_response_;
+static SemaphoreHandle_t cclk_semaphore_ = NULL;
+static bool cclk_received_ = false;
 
 /**
  * @brief 初始化 ML307 模组
@@ -421,5 +430,100 @@ void mqtt_on_message(const char *topic, const char *payload, size_t payload_len)
     }
 }
 
+// ==================== 时间同步函数 (极简版 - 只提取时分秒) ====================
 
+/**
+ * @brief 从 ML307 获取网络时间 (标准AT响应格式)
+ * 
+ * 返回格式: +CCLK: "26/03/09,08:53:13+32"
+ * ml307_sntp_time.cpp 会解析这个格式并转换为本地时间
+ */
+extern "C" bool ml307_get_network_time(char *time_str, size_t size)
+{
+    if (time_str == NULL || size == 0 || at_uart_ == nullptr) {
+        return false;
+    }
 
+    // 创建信号量
+    if (cclk_semaphore_ == NULL) {
+        cclk_semaphore_ = xSemaphoreCreateBinary();
+        if (cclk_semaphore_ == NULL) {
+            return false;
+        }
+    }
+
+    // 重置状态
+    cclk_received_ = false;
+    cclk_response_.clear();
+
+    // 注册URC回调 - 拼接所有参数
+    auto urc_callback_it = at_uart_->RegisterUrcCallback(
+        [](const std::string& command, const std::vector<AtArgumentValue>& arguments) {
+            if (command == "CCLK" && arguments.size() > 0) {
+                // 拼接所有参数
+                for (size_t i = 0; i < arguments.size(); i++) {
+                    cclk_response_ += arguments[i].string_value;
+                }
+                cclk_received_ = true;
+                
+                if (cclk_semaphore_ != NULL) {
+                    xSemaphoreGive(cclk_semaphore_);
+                }
+            }
+        }
+    );
+
+    // 发送命令
+    if (!at_uart_->SendCommand("AT+CCLK?", 3000)) {
+        at_uart_->UnregisterUrcCallback(urc_callback_it);
+        return false;
+    }
+    
+    // 等待响应
+    if (xSemaphoreTake(cclk_semaphore_, pdMS_TO_TICKS(3000)) != pdTRUE) {
+        at_uart_->UnregisterUrcCallback(urc_callback_it);
+        return false;
+    }
+
+    at_uart_->UnregisterUrcCallback(urc_callback_it);
+
+    if (!cclk_received_ || cclk_response_.empty()) {
+        return false;
+    }
+
+    // 智能修复: 如果缺少逗号,补上
+    // "26/03/008:53:13+32" -> "26/03/09,08:53:13+32"
+    std::string fixed = cclk_response_;
+    
+    if (fixed.find(',') == std::string::npos) {
+        // 没有逗号,尝试补全
+        // 找到最后一个 '/' 后的位置
+        size_t last_slash = fixed.rfind('/');
+        if (last_slash != std::string::npos && last_slash + 2 < fixed.length()) {
+            // 在日期后2位插入逗号
+            fixed.insert(last_slash + 2, ",");
+        }
+    }
+    
+    // 返回标准格式: +CCLK: "26/03/09,08:53:13+32"
+    snprintf(time_str, size, "+CCLK: \"%s\"", fixed.c_str());
+    
+    return true;
+}
+
+/**
+ * @brief 触发 ML307 NTP 时间同步
+ */
+extern "C" bool ml307_sync_ntp_time(void)
+{
+    if (at_uart_ == nullptr) {
+        return false;
+    }
+
+    if (!at_uart_->SendCommand("AT+MNTP=\"ntp.aliyun.com\",123,0", 10000)) {
+        return false;
+    }
+    
+    vTaskDelay(pdMS_TO_TICKS(1000));
+    return true;
+}

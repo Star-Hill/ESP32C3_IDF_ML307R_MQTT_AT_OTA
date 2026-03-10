@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "BeeHive_Vscode_4G",
-    "project_version":    "4e32e84-dirty",
+    "project_version":    "a0174da-dirty",
     "project_path":       "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI",
     "idf_path":           "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf",
     "build_dir":          "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build",
@@ -985,8 +985,8 @@
             "managed_reqs": [],
             "managed_priv_reqs": [ "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit", "protocol_examples_common" ],
             "file": "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build/esp-idf/main/libmain.a",
-            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/main.cpp", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/DHT11/bsp_dht11.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/ML307/ml307_mqtt_client.cpp", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/XL9555/xl9555_ir_counter.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/WIFI_MQTT/beehive_system.c" ],
-            "include_dirs": [ ".", "DHT11", "XL9555", "ML307", "WIFI_MQTT" ]
+            "sources": [ "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/main.cpp", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/DHT11/bsp_dht11.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/ML307_MQTT/ml307_mqtt_client.cpp", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/XL9555/xl9555_ir_counter.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/WIFI_MQTT/beehive_system.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/TIME/wifi_sntp_time.c", "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main/TIME/ml307_sntp_time.cpp" ],
+            "include_dirs": [ ".", "DHT11", "XL9555", "ML307_MQTT", "WIFI_MQTT", "TIME" ]
         },
         "mbedtls": {
             "alias": "idf::mbedtls",
@@ -2551,7 +2551,7 @@
             "priv_reqs": [ "spi_flash", "mqtt", "nvs_flash", "esp_netif", "json", "driver", "esp_wifi", "esp_http_server", "xn_web_wifi_manger", "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit", "protocol_examples_common" ],
             "managed_reqs": [],
             "managed_priv_reqs": [ "78__esp-ml307", "espressif__esp_io_expander_tca9554", "espressif__esp_io_expander_tca95xx_16bit", "protocol_examples_common" ],
-            "include_dirs": [ ".", "DHT11", "XL9555", "ML307", "WIFI_MQTT" ]
+            "include_dirs": [ ".", "DHT11", "XL9555", "ML307_MQTT", "WIFI_MQTT", "TIME" ]
         },
         "xn_web_wifi_manger": {
             "alias": "idf::xn_web_wifi_manger",

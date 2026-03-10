@@ -1,3 +1,11 @@
+/*
+ * @Author: Stathill星丘 && cishaxiatian@gmail.com
+ * @Date: 2026-03-05 17:26:32
+ * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
+ * @LastEditTime: 2026-03-10 01:15:39
+ * @FilePath: \BeeHive_Vscode_4G_WIFI\main\DHT11\bsp_dht11.h
+ * @Description: 
+ */
 #ifndef _BSP_DHT11_H_
 #define _BSP_DHT11_H_
 

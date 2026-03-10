@@ -18,9 +18,9 @@ extern "C"
 #endif
 
 /* ==================== 配置宏定义 ==================== */
-// WiFi 连接超时时间（秒），默认：50 秒
+// WiFi 连接超时时间（秒），默认：60 秒
 #ifndef WIFI_TIMEOUT_SECONDS
-#define WIFI_TIMEOUT_SECONDS 60
+#define WIFI_TIMEOUT_SECONDS 10
 #endif
 
 // WiFi 连接状态检查间隔（秒），默认：5 秒

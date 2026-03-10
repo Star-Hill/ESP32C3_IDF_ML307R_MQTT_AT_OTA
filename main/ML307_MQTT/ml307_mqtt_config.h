@@ -1,16 +1,11 @@
 /*
  * @Author: StarHill cishaxiatian@163.com
  * @Date: 2026-03-07 13:35:17
- * @LastEditors: StarHill cishaxiatian@163.com
- * @LastEditTime: 2026-03-08 11:07:24
- * @FilePath: \BeeHive_Vscode_4G\main\ML307\ml307_mqtt_config.h
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
-/**
- * @file ml307_mqtt_config.h
- * @brief ML307 MQTT 客户端配置文件
- * 
- * 修改这个文件来配置 MQTT 连接参数
+ * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
+ * @LastEditTime: 2026-03-09 13:59:10
+ * @FilePath: \BeeHive_Vscode_4G_WIFI\main\ML307_MQTT\ml307_mqtt_config.h
+ * @Description:修改这个文件来配置 MQTT 连接参数
+
  */
 
 #ifndef ML307_MQTT_CONFIG_H
@@ -34,7 +29,7 @@
 // ==================== 定时发送配置 ====================
 // 自动发送消息的间隔时间（毫秒）
 // 1000 = 1秒，5000 = 5秒，60000 = 1分钟
-#define MQTT_PUBLISH_INTERVAL_MS    2000
+#define MQTT_PUBLISH_INTERVAL_MS    5000
 
 // ==================== GPIO 配置 ====================
 

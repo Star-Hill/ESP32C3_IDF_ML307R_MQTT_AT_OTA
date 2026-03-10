@@ -1,3 +1,11 @@
+/*
+ * @Author: Stathill星丘 && cishaxiatian@gmail.com
+ * @Date: 2026-03-08 10:26:37
+ * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
+ * @LastEditTime: 2026-03-10 01:21:10
+ * @FilePath: \BeeHive_Vscode_4G_WIFI\main\WIFI_MQTT\beehive_system.c
+ * @Description: BeeHive 系统核心模块 - 实现文件
+ */
 
 #include "beehive_system.h"
 #include "xn_wifi_manage.h"
@@ -206,7 +214,7 @@ static void wifi_timeout_check_task(void *pvParameters)
 
     if (!s_wifi_connected)
     {
-        ESP_LOGI(TAG, "WIFI配对模式下用户没有选择连接，连接自动切换为4G");
+        ESP_LOGW(TAG, "WIFI配对模式下用户没有选择连接，连接自动切换为4G");
 
         s_wifi_timeout_triggered = true;
 
