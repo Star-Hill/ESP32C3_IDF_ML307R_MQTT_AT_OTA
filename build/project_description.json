@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "BeeHive_Vscode_4G",
-    "project_version":    "a0174da-dirty",
+    "project_version":    "v0.5-dirty",
     "project_path":       "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI",
     "idf_path":           "D:/Program/C/Espidf552/IDF552/v5.5.2/esp-idf",
     "build_dir":          "D:/Program_Workspace/ESP_Workspace/ESP32S3R16N8/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/build",

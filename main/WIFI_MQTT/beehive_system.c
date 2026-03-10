@@ -132,19 +132,63 @@ static void mqtt_publish_task(void *pvParameters)
         if (s_mqtt_client != NULL && s_mqtt_connected)
         {
             token_id++;
+
             // 读取 DHT11 温湿度
             float temp = dht11_get_temperature();
             float humid = dht11_get_humidity();
 
-            // 构建 JSON
+            // 读取 16 路红外计数
+            uint32_t ch[XL9555_IR_CHANNEL_COUNT] = {0};
+            xl9555_ir_counter_get_all(ch);
+
+            uint32_t total_count = 0;
+            for (int i = 0; i < XL9555_IR_CHANNEL_COUNT; i++)
+            {
+                total_count += ch[i];
+            }
+
+            // 构建 JSON（与 ML307 格式一致）
             snprintf(mqtt_publish_data, sizeof(mqtt_publish_data),
-                     "{\"device\":\"BeeHive_WIFI\",\"temp\":%.1f,\"humid\":%.1f,\"token\":%d,\"interval\":%d}",
-                     temp, humid, token_id, s_publish_interval);
+                     "{"
+                     "\"method\":\"report\","
+                     "\"clientToken\":%d,"
+                     "\"params\":{"
+                     "\"temp\":%.2f,"
+                     "\"hum\":%.2f,"
+                     "\"ch1\":%" PRIu32 ","
+                     "\"ch2\":%" PRIu32 ","
+                     "\"ch3\":%" PRIu32 ","
+                     "\"ch4\":%" PRIu32 ","
+                     "\"ch5\":%" PRIu32 ","
+                     "\"ch6\":%" PRIu32 ","
+                     "\"ch7\":%" PRIu32 ","
+                     "\"ch8\":%" PRIu32 ","
+                     "\"ch9\":%" PRIu32 ","
+                     "\"ch10\":%" PRIu32 ","
+                     "\"ch11\":%" PRIu32 ","
+                     "\"ch12\":%" PRIu32 ","
+                     "\"ch13\":%" PRIu32 ","
+                     "\"ch14\":%" PRIu32 ","
+                     "\"ch15\":%" PRIu32 ","
+                     "\"ch16\":%" PRIu32 ","
+                     "\"total_count\":%" PRIu32
+                     "}"
+                     "}",
+                     token_id,
+                     temp, humid,
+                     ch[0], ch[1], ch[2], ch[3],
+                     ch[4], ch[5], ch[6], ch[7],
+                     ch[8], ch[9], ch[10], ch[11],
+                     ch[12], ch[13], ch[14], ch[15],
+                     total_count);
 
             esp_mqtt_client_publish(s_mqtt_client, MQTT_PUBLISH_TOPIC,
                                     mqtt_publish_data, strlen(mqtt_publish_data), 0, 0);
 
             ESP_LOGI(TAG, "📤 已发布 [%d]: %s", token_id, mqtt_publish_data);
+
+            // ✅ 发布成功后重置红外计数
+            xl9555_ir_counter_reset(0xFF);
         }
         vTaskDelay(pdMS_TO_TICKS(s_publish_interval * 1000));
     }

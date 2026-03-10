@@ -2,7 +2,7 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-06 13:34:25
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-10 09:12:27
+ * @LastEditTime: 2026-03-10 13:51:17
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\XL9555\xl9555_ir_counter.c
  * @Description: XL9555 16路红外计数模块 —— INT中断驱动，源文件
  */
@@ -102,8 +102,13 @@ static void ir_counter_task(void *arg)
                 if (ch % 4 == 3)
                     printf("\n");
             }
+            uint32_t total_count = 0;
+            for (int i = 0; i < XL9555_IR_CHANNEL_COUNT; i++)
+            {
+                total_count += s_ir_count[i];
+            }
+            printf("  Total: %" PRIu32 "\n", total_count);
             printf("  Level: 0x%04" PRIX32 "\n", s_last_level);
-            xl9555_ir_counter_reset(0xFF); // 重置全部通道计数
         }
     }
 }

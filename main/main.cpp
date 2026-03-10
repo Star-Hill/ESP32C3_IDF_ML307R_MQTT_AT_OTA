@@ -2,7 +2,7 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-05 17:21:09
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-09 15:05:16
+ * @LastEditTime: 2026-03-10 11:24:40
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\main.cpp
  * @Description: 主函数，启动整个系统
  */
@@ -45,26 +45,20 @@ static const char *TAG = "MAIN";
 extern "C" void app_main(void)
 {
 
-    // // 启动DHT11任务，自动定时读取并输出
+    // 启动DHT11任务，自动定时读取并输出
     dht11_task_start();
-
-    // // 1. 初始化硬件（I2C + XL9555 + INT GPIO）
-    // ESP_ERROR_CHECK(xl9555_ir_counter_init());
-    // // 2. 启动后台计数任务（每 5 秒自动打印日志）
-    // ESP_ERROR_CHECK(xl9555_ir_counter_start());
+    // 初始化硬件（I2C + XL9555 + INT GPIO）
+    ESP_ERROR_CHECK(xl9555_ir_counter_init());
+    // 启动后台计数任务（每 5 秒自动打印日志）
+    ESP_ERROR_CHECK(xl9555_ir_counter_start());
     ESP_LOGI(TAG, "System ready.");
+
 
     // ✨ 一行代码启动整个系统（WiFi + ML407R + MQTT + 超时检测）
     beehive_system_start();
 
     // 3. 启动时间显示（一行代码）
-    ESP_LOGI(TAG, "✅ 时间显示模块已启动");
-    // wifi_time_display_start();
-
-    vTaskDelay(pdMS_TO_TICKS(20000));
-
-    // 3. 启动时间同步任务 (一行代码搞定!)
-    ml307_sntp_time_start();
+    wifi_time_display_start();
 
     // 主循环：可以在这里添加其他功能
     while (1)

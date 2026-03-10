@@ -32,7 +32,7 @@ extern "C"
 
 /* ==================== 任务配置 ==================== */
 #define XL9555_IR_CHANNEL_COUNT 16
-#define XL9555_IR_LOG_INTERVAL_MS 5000 // 日志打印间隔，默认 5 秒
+#define XL9555_IR_LOG_INTERVAL_MS 10000 // 日志打印间隔，默认 10 秒
 #define XL9555_IR_TASK_STACK_SIZE 4096
 #define XL9555_IR_TASK_PRIORITY 5
 #define XL9555_IR_TASK_CORE 0

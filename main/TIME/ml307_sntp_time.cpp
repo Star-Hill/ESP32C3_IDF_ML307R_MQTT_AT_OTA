@@ -2,10 +2,15 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-09 13:44:22
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-10 01:19:50
+ * @LastEditTime: 2026-03-10 12:00:00
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\TIME\ml307_sntp_time.cpp
- * @Description: ML307 网络时间同步模块 - 实现文件 (简化时间显示版本)
- * 时间显示格式改为只显示: HH:MM:SS (例如: 16:53:23)
+ * @Description: ML307 网络时间同步模块 - 实现文件
+ *
+ * 时间管理策略:
+ * - 首次: NTP同步 → 解析 AT+CCLK? 响应 → settimeofday 写入 RTC
+ * - 运行中: 每 TIME_LOG_INTERVAL_MS 用 gettimeofday 读 RTC 打印 HH:MM:SS
+ * - 每日凌晨: 在 00:00 ~ 00:(TIME_MIDNIGHT_SYNC_WINDOW_MIN) 触发一次重新同步
+ *             同一窗口内只同步一次，窗口结束后重置标志
  */
 
 #include "ml307_sntp_time.h"
@@ -14,14 +19,14 @@
 #include <string.h>
 #include <stdlib.h>
 #include <string>
+#include <sys/time.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "freertos/event_groups.h"
 #include "freertos/semphr.h"
 #include "esp_log.h"
 #include "esp_system.h"
 
-// 引入ML307组件
 #include "at_uart.h"
 #include "at_modem.h"
 
@@ -29,389 +34,349 @@ static const char *TAG = "ML307_Time";
 
 // ==================== 全局变量 ====================
 
-// 任务句柄
-static TaskHandle_t time_task_handle_ = NULL;
+static TaskHandle_t    time_task_handle_   = NULL;
+static bool            is_running_         = false;
+static bool            rtc_synced_         = false;   ///< RTC 是否已被 NTP 写入过
+static ntp_sync_status_t ntp_sync_status_  = NTP_SYNC_IDLE;
 
-// 运行状态
-static bool is_running_ = false;
+// 每日凌晨同步控制
+static bool midnight_sync_done_            = false;   ///< 当日窗口是否已同步过
 
-// NTP同步状态
-static ntp_sync_status_t ntp_sync_status_ = NTP_SYNC_IDLE;
-static uint32_t last_sync_tick_ = 0;
-
-// NTP服务器配置 (运行时可修改)
-static char ntp_server_[64] = NTP_SERVER_ADDRESS;
-static uint16_t ntp_port_ = NTP_SERVER_PORT;
-
-// 时间回调函数
+// 时间回调
 static ml307_time_callback_t time_callback_ = NULL;
 
-// 事件组
-static EventGroupHandle_t time_event_group_ = NULL;
-#define TIME_MQTT_READY_BIT  BIT0
-
-// AT命令互斥锁 (全局共享,避免与MQTT冲突)
+// AT 互斥锁 (与 MQTT 模块共享，避免同时发 AT 命令)
 static SemaphoreHandle_t at_command_mutex_ = NULL;
 
-// ==================== 外部C++函数声明 ====================
+// ==================== 外部 C++ 桥接声明 ====================
 
 /**
- * @brief C++桥接: 获取网络时间
+ * @brief 从 ML307 获取网络时间字符串 (在 ml307_mqtt_client.cpp 中实现)
+ *
+ * 输出格式: +CCLK: "yy/MM/dd,hh:mm:ss+tz"
  */
 extern "C" bool ml307_get_network_time(char *time_str, size_t size);
 
 /**
- * @brief C++桥接: 触发NTP同步
+ * @brief 触发 ML307 NTP 同步 (在 ml307_mqtt_client.cpp 中实现)
  */
 extern "C" bool ml307_sync_ntp_time(void);
 
-// ==================== 辅助函数 ====================
+// ==================== 内部辅助函数 ====================
 
 /**
- * @brief 解析 AT+CCLK? 的响应
- * 
- * 响应格式: +CCLK: "21/12/27,06:56:20+32"
- * 或者: +CCLK: "26/03/09,06:56:20+32"  (完整年份)
+ * @brief 解析 AT+CCLK? 响应，填充 ml307_time_t
+ *
+ * 响应格式: +CCLK: "yy/MM/dd,hh:mm:ss±tz"
+ * 其中 tz 是相对 UTC 的 1/4 小时数 (如 +8 时区 = +32)
  */
 static bool parse_cclk_response(const char *response, ml307_time_t *time)
 {
-    if (response == NULL || time == NULL) {
-        return false;
-    }
+    if (response == NULL || time == NULL) return false;
 
-    // 初始化
     memset(time, 0, sizeof(ml307_time_t));
     time->valid = false;
 
-    // 查找 +CCLK: 
     const char *start = strstr(response, "+CCLK:");
-    if (start == NULL) {
-        ESP_LOGD(TAG, "未找到 +CCLK: 标记");
-        return false;
-    }
+    if (start == NULL) return false;
 
-    // 查找引号内的时间字符串
-    const char *quote1 = strchr(start, '"');
-    if (quote1 == NULL) {
-        ESP_LOGD(TAG, "未找到起始引号");
-        return false;
-    }
-    quote1++; // 跳过引号
+    const char *q1 = strchr(start, '"');
+    if (q1 == NULL) return false;
+    q1++;
 
-    const char *quote2 = strchr(quote1, '"');
-    if (quote2 == NULL) {
-        ESP_LOGD(TAG, "未找到结束引号");
-        return false;
-    }
+    const char *q2 = strchr(q1, '"');
+    if (q2 == NULL) return false;
 
-    // 复制时间字符串
-    char time_str[32];
-    size_t len = quote2 - quote1;
-    if (len >= sizeof(time_str)) {
-        ESP_LOGE(TAG, "时间字符串过长");
-        return false;
-    }
-    strncpy(time_str, quote1, len);
-    time_str[len] = '\0';
+    char ts[32];
+    size_t len = (size_t)(q2 - q1);
+    if (len >= sizeof(ts)) return false;
+    strncpy(ts, q1, len);
+    ts[len] = '\0';
 
-    // 解析: "yy/MM/dd,hh:mm:ss±zz"
-    // 示例: "26/03/09,14:56:20+32"
-    int yy, MM, dd, hh, mm, ss, zz;
-    char tz_sign;
-
-    int matched = sscanf(time_str, "%2d/%2d/%2d,%2d:%2d:%2d%c%2d",
-                         &yy, &MM, &dd, &hh, &mm, &ss, &tz_sign, &zz);
-
+    int yy, MM, dd, hh, mm, ss, tz = 0;
+    char tz_sign = '+';
+    int matched = sscanf(ts, "%2d/%2d/%2d,%2d:%2d:%2d%c%2d",
+                         &yy, &MM, &dd, &hh, &mm, &ss, &tz_sign, &tz);
     if (matched < 6) {
-        ESP_LOGE(TAG, "时间格式解析失败: %s (匹配了%d个字段)", time_str, matched);
+        ESP_LOGE(TAG, "CCLK 解析失败: %s (matched=%d)", ts, matched);
         return false;
     }
 
-    // 填充结构体
-    time->year = 2000 + yy;
-    time->month = MM;
-    time->day = dd;
-    time->hour = hh;
-    time->minute = mm;
-    time->second = ss;
+    // 将 UTC + 时区偏移 转换为本地时间
+    // tz 单位是 1/4 小时
+    int tz_total_min = (tz_sign == '-') ? -(tz * 15) : (tz * 15);
+    int total_min    = hh * 60 + mm + tz_total_min;
 
-    // 时区处理 (±zz 表示相对UTC的1/4小时数)
-    if (matched >= 8) {
-        time->timezone = (tz_sign == '-') ? -zz : zz;
-    } else {
-        time->timezone = 0;
-    }
+    // 处理跨日
+    int day_offset = 0;
+    while (total_min < 0)      { total_min += 1440; day_offset--; }
+    while (total_min >= 1440)  { total_min -= 1440; day_offset++; }
 
-    time->valid = true;
+    time->year   = 2000 + yy;
+    time->month  = (uint8_t)MM;
+    time->day    = (uint8_t)(dd + day_offset);   // 粗略处理，跨月不修正
+    time->hour   = (uint8_t)(total_min / 60);
+    time->minute = (uint8_t)(total_min % 60);
+    time->second = (uint8_t)ss;
+    time->valid  = true;
 
-    ESP_LOGD(TAG, "✅ 解析成功: %04d-%02d-%02d %02d:%02d:%02d (TZ:%+d)",
+    ESP_LOGI(TAG, "✅ CCLK 解析: %04d-%02d-%02d %02d:%02d:%02d",
              time->year, time->month, time->day,
-             time->hour, time->minute, time->second,
-             time->timezone);
-
+             time->hour, time->minute, time->second);
     return true;
 }
 
 /**
- * @brief 格式化时间为字符串 (简化版 - 只显示时分秒)
+ * @brief 将 ml307_time_t 写入 ESP32 RTC (settimeofday)
  */
-static int format_time_string(const ml307_time_t *time, char *buffer, size_t size)
+static bool set_rtc_from_time(const ml307_time_t *t)
 {
-    if (!time->valid) {
-        return snprintf(buffer, size, "无效时间");
+    if (t == NULL || !t->valid) return false;
+
+    struct tm tm_info = {};
+    tm_info.tm_year = t->year - 1900;
+    tm_info.tm_mon  = t->month - 1;
+    tm_info.tm_mday = t->day;
+    tm_info.tm_hour = t->hour;
+    tm_info.tm_min  = t->minute;
+    tm_info.tm_sec  = t->second;
+    tm_info.tm_isdst = -1;
+
+    time_t epoch = mktime(&tm_info);
+    if (epoch == (time_t)-1) {
+        ESP_LOGE(TAG, "mktime 失败");
+        return false;
     }
 
-    // 计算时区偏移 (timezone 是1/4小时单位, 如+32表示+8小时)
-    int tz_hours = time->timezone / 4;
-    int tz_minutes = (time->timezone % 4) * 15;
-    
-    // 将UTC时间转换为本地时间
-    int local_hour = time->hour + tz_hours;
-    int local_minute = time->minute + tz_minutes;
-    
-    // 处理分钟溢出
-    if (local_minute >= 60) {
-        local_minute -= 60;
-        local_hour += 1;
-    } else if (local_minute < 0) {
-        local_minute += 60;
-        local_hour -= 1;
-    }
-    
-    // 处理小时溢出
-    if (local_hour >= 24) {
-        local_hour -= 24;
-    } else if (local_hour < 0) {
-        local_hour += 24;
+    struct timeval tv = { .tv_sec = epoch, .tv_usec = 0 };
+    if (settimeofday(&tv, NULL) != 0) {
+        ESP_LOGE(TAG, "settimeofday 失败");
+        return false;
     }
 
-    // 只显示时分秒: HH:MM:SS
-    return snprintf(buffer, size,
-                    "%02d:%02d:%02d",
-                    local_hour, local_minute, time->second);
-}
-
-// ==================== 内部实现函数 ====================
-
-/**
- * @brief 从ML307读取时间 (带互斥锁保护)
- * 
- * @param time 输出时间结构体
- * @return true 成功, false 失败
- */
-static bool internal_get_time(ml307_time_t *time)
-{
-    bool result = false;
-    
-    // 获取互斥锁 (超时2秒)
-    if (at_command_mutex_ != NULL) {
-        if (xSemaphoreTake(at_command_mutex_, pdMS_TO_TICKS(2000)) != pdTRUE) {
-            ESP_LOGW(TAG, "⏳ AT命令忙,跳过本次时间读取");
-            return false;
-        }
-    }
-
-    // 调用C桥接函数获取时间
-    char response[128];
-    if (ml307_get_network_time(response, sizeof(response))) {
-        // 解析响应
-        if (parse_cclk_response(response, time)) {
-            result = true;
-        } else {
-            ESP_LOGD(TAG, "解析时间响应失败");
-        }
-    } else {
-        ESP_LOGD(TAG, "获取网络时间失败");
-    }
-
-    // 释放互斥锁
-    if (at_command_mutex_ != NULL) {
-        xSemaphoreGive(at_command_mutex_);
-    }
-
-    return result;
+    ESP_LOGI(TAG, "✅ RTC 已更新: %02d:%02d:%02d", t->hour, t->minute, t->second);
+    return true;
 }
 
 /**
- * @brief 执行NTP同步 (带互斥锁保护)
+ * @brief 从 ESP32 RTC 读取当前时间
  */
-static bool internal_sync_ntp(void)
+static bool read_rtc(ml307_time_t *out)
 {
-    bool result = false;
+    if (!rtc_synced_) {
+        out->valid = false;
+        return false;
+    }
 
-    ESP_LOGI(TAG, "🔄 开始NTP同步: %s:%d", ntp_server_, ntp_port_);
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    struct tm tm_info;
+    localtime_r(&tv.tv_sec, &tm_info);
 
+    out->year   = (uint16_t)(tm_info.tm_year + 1900);
+    out->month  = (uint8_t)(tm_info.tm_mon + 1);
+    out->day    = (uint8_t)tm_info.tm_mday;
+    out->hour   = (uint8_t)tm_info.tm_hour;
+    out->minute = (uint8_t)tm_info.tm_min;
+    out->second = (uint8_t)tm_info.tm_sec;
+    out->valid  = true;
+    return true;
+}
+
+/**
+ * @brief 执行一次完整的云端时间同步并写入 RTC
+ *
+ * 步骤: AT+MNTP → 等待 → AT+CCLK? → settimeofday
+ * 需要持有 at_command_mutex_
+ *
+ * @return true 同步且写入成功
+ */
+static bool do_cloud_sync(void)
+{
     ntp_sync_status_ = NTP_SYNC_IN_PROGRESS;
+    bool ok = false;
 
-    // 获取互斥锁 (超时10秒)
+    // 获取 AT 互斥锁 (超时10秒)
     if (at_command_mutex_ != NULL) {
         if (xSemaphoreTake(at_command_mutex_, pdMS_TO_TICKS(10000)) != pdTRUE) {
-            ESP_LOGW(TAG, "⏳ AT命令忙,NTP同步延后");
+            ESP_LOGW(TAG, "⏳ AT 忙，跳过本次同步");
             ntp_sync_status_ = NTP_SYNC_FAILED;
             return false;
         }
     }
 
-    // 调用C桥接函数
-    if (ml307_sync_ntp_time()) {
-        ntp_sync_status_ = NTP_SYNC_SUCCESS;
-        last_sync_tick_ = xTaskGetTickCount() * portTICK_PERIOD_MS;
-        ESP_LOGI(TAG, "✅ NTP同步成功");
-        result = true;
-    } else {
+    // 1. NTP 同步
+    ESP_LOGI(TAG, "🔄 触发 NTP 同步: %s:%d", NTP_SERVER_ADDRESS, NTP_SERVER_PORT);
+    if (!ml307_sync_ntp_time()) {
+        ESP_LOGW(TAG, "⚠️ NTP 命令发送失败");
         ntp_sync_status_ = NTP_SYNC_FAILED;
-        ESP_LOGW(TAG, "⚠️ NTP同步失败");
+        goto release;
+    }
+    // 等待模组完成 NTP 校时
+    vTaskDelay(pdMS_TO_TICKS(3000));
+
+    // 2. 读取时间
+    {
+        char raw[128];
+        if (!ml307_get_network_time(raw, sizeof(raw))) {
+            ESP_LOGW(TAG, "⚠️ AT+CCLK? 读取失败");
+            ntp_sync_status_ = NTP_SYNC_FAILED;
+            goto release;
+        }
+
+        ml307_time_t t;
+        if (!parse_cclk_response(raw, &t)) {
+            ntp_sync_status_ = NTP_SYNC_FAILED;
+            goto release;
+        }
+
+        // 3. 写入 RTC
+        if (set_rtc_from_time(&t)) {
+            rtc_synced_     = true;
+            ntp_sync_status_ = NTP_SYNC_SUCCESS;
+            ok = true;
+        } else {
+            ntp_sync_status_ = NTP_SYNC_FAILED;
+        }
     }
 
-    // 释放互斥锁
+release:
     if (at_command_mutex_ != NULL) {
         xSemaphoreGive(at_command_mutex_);
     }
-
-    return result;
+    return ok;
 }
 
-/**
- * @brief 时间同步任务主函数
- */
+// ==================== 时间同步任务 ====================
+
 static void time_sync_task(void *pvParameters)
 {
     ESP_LOGI(TAG, "========================================");
-    ESP_LOGI(TAG, "  时间同步任务启动");
-    ESP_LOGI(TAG, "  打印间隔: %lu ms", TIME_LOG_INTERVAL_MS);
-    ESP_LOGI(TAG, "  NTP服务器: %s:%d", ntp_server_, ntp_port_);
+    ESP_LOGI(TAG, "  时间同步任务启动 (RTC模式)");
+    ESP_LOGI(TAG, "  日志间隔  : %lu ms", TIME_LOG_INTERVAL_MS);
+    ESP_LOGI(TAG, "  NTP服务器 : %s:%d", NTP_SERVER_ADDRESS, NTP_SERVER_PORT);
+#if TIME_MIDNIGHT_SYNC_WINDOW_MIN > 0
+    ESP_LOGI(TAG, "  凌晨重同步: 00:00 ~ 00:%02d 窗口内", TIME_MIDNIGHT_SYNC_WINDOW_MIN);
+#else
+    ESP_LOGI(TAG, "  凌晨重同步: 禁用");
+#endif
     ESP_LOGI(TAG, "========================================");
 
-    // 等待MQTT模块初始化完成
-    ESP_LOGI(TAG, "⏳ 等待 MQTT 模块初始化...");
-    vTaskDelay(pdMS_TO_TICKS(8000));  // 延长到8秒,确保MQTT完全就绪
+    // 等待 MQTT 模块初始化完成
+    ESP_LOGI(TAG, "⏳ 等待 MQTT 模块初始化 (%lu ms)...", NTP_INITIAL_SYNC_DELAY_MS + 8000UL);
+    vTaskDelay(pdMS_TO_TICKS(8000));   // 与 MQTT 任务同步，确保 at_uart_ 可用
 
-    // 首次NTP同步 (可选)
-    #if NTP_AUTO_SYNC_INTERVAL_MS > 0
-    ESP_LOGI(TAG, "⏳ 延迟 %lu ms 后进行首次NTP同步...", NTP_INITIAL_SYNC_DELAY_MS);
+    // ── 首次 NTP 同步 ──────────────────────────────────────
+    ESP_LOGI(TAG, "⏳ 延迟 %lu ms 后进行首次 NTP 同步...", NTP_INITIAL_SYNC_DELAY_MS);
     vTaskDelay(pdMS_TO_TICKS(NTP_INITIAL_SYNC_DELAY_MS));
-    
-    internal_sync_ntp();
-    vTaskDelay(pdMS_TO_TICKS(3000)); // 等待同步完成
-    #endif
 
     ESP_LOGI(TAG, "");
-    ESP_LOGI(TAG, "⏰ 开始定时打印时间日志...");
+    ESP_LOGI(TAG, "🔄 首次云端时间同步...");
+    if (do_cloud_sync()) {
+        ESP_LOGI(TAG, "✅ 首次同步成功，RTC 已接管计时");
+    } else {
+        ESP_LOGW(TAG, "⚠️ 首次同步失败，等待下一次重试");
+        // 首次失败时，每隔 10 秒重试，直到成功
+        while (is_running_ && !rtc_synced_) {
+            vTaskDelay(pdMS_TO_TICKS(10000));
+            ESP_LOGI(TAG, "🔄 重试首次时间同步...");
+            do_cloud_sync();
+        }
+    }
+
+    ESP_LOGI(TAG, "");
+    ESP_LOGI(TAG, "⏰ 开始定时读取 RTC 时间...");
     ESP_LOGI(TAG, "");
 
-    uint32_t last_ntp_sync_tick = xTaskGetTickCount() * portTICK_PERIOD_MS;
-    uint32_t loop_count = 0;
-    uint32_t success_count = 0;
-    uint32_t fail_count = 0;
-
-    // 主循环
+    // ── 主循环 ──────────────────────────────────────────────
     while (is_running_)
     {
-        loop_count++;
-
-        // 获取当前时间
-        ml307_time_t current_time;
-        if (internal_get_time(&current_time))
+        ml307_time_t now;
+        if (read_rtc(&now))
         {
-            success_count++;
-            
-            // 格式化时间字符串
-            char time_str[64];
-            format_time_string(&current_time, time_str, sizeof(time_str));
+            // 打印时间 (仅 HH:MM:SS)
+            ESP_LOGI(TAG, "%02d:%02d:%02d", now.hour, now.minute, now.second);
 
-            // 打印日志 (简化格式)
-            ESP_LOGI(TAG, "%s", time_str);
-
-            // 调用用户回调 (如果注册了)
+            // 调用用户回调
             if (time_callback_ != NULL) {
-                time_callback_(&current_time);
+                time_callback_(&now);
             }
-            
-            // 重置失败计数
-            fail_count = 0;
+
+#if TIME_MIDNIGHT_SYNC_WINDOW_MIN > 0
+            // ── 每日凌晨同步逻辑 ──────────────────────────
+            // 进入窗口: hour==0 && minute < WINDOW  && 还没同步过
+            // 离开窗口: minute >= WINDOW → 重置标志，下一天重来
+            if (now.hour == 0 && now.minute < TIME_MIDNIGHT_SYNC_WINDOW_MIN) {
+                if (!midnight_sync_done_) {
+                    ESP_LOGI(TAG, "");
+                    ESP_LOGI(TAG, "🌙 凌晨重同步 (00:%02d 窗口)...", now.minute);
+                    if (do_cloud_sync()) {
+                        ESP_LOGI(TAG, "✅ 凌晨同步成功");
+                    } else {
+                        ESP_LOGW(TAG, "⚠️ 凌晨同步失败，下次窗口重试");
+                    }
+                    midnight_sync_done_ = true;   // 无论成功失败，窗口内只尝试一次
+                    ESP_LOGI(TAG, "");
+                }
+            } else {
+                // 离开窗口 → 重置，下一天可再触发
+                midnight_sync_done_ = false;
+            }
+#endif
         }
         else
         {
-            fail_count++;
-            
-            // 连续失败3次才打印警告
-            if (fail_count <= 3) {
-                ESP_LOGD(TAG, "⚠️ [%lu] 获取时间失败 (第%lu次)", loop_count, fail_count);
-            } else {
-                ESP_LOGW(TAG, "⚠️ [%lu] 获取时间失败 (连续%lu次)", loop_count, fail_count);
-            }
+            // RTC 尚未就绪（首次同步未完成）
+            ESP_LOGD(TAG, "⏳ RTC 尚未就绪");
         }
 
-        // 检查是否需要自动NTP同步
-        #if NTP_AUTO_SYNC_INTERVAL_MS > 0
-        uint32_t current_tick = xTaskGetTickCount() * portTICK_PERIOD_MS;
-        if (current_tick - last_ntp_sync_tick >= NTP_AUTO_SYNC_INTERVAL_MS)
-        {
-            ESP_LOGI(TAG, "");
-            ESP_LOGI(TAG, "🔄 自动NTP同步 (间隔: %lu ms)", NTP_AUTO_SYNC_INTERVAL_MS);
-            internal_sync_ntp();
-            last_ntp_sync_tick = current_tick;
-            ESP_LOGI(TAG, "");
-            
-            vTaskDelay(pdMS_TO_TICKS(3000)); // 等待同步完成
-        }
-        #endif
-
-        // 等待下一次打印
         vTaskDelay(pdMS_TO_TICKS(TIME_LOG_INTERVAL_MS));
     }
 
-    ESP_LOGI(TAG, "⏹️ 时间同步任务退出 (成功:%lu, 失败:%lu)", success_count, fail_count);
+    ESP_LOGI(TAG, "⏹️ 时间同步任务退出");
     time_task_handle_ = NULL;
     vTaskDelete(NULL);
 }
 
-// ==================== C接口实现 (extern "C") ====================
+// ==================== 公共 API 实现 ====================
 
 extern "C" {
 
 bool ml307_sntp_time_start(void)
 {
     if (time_task_handle_ != NULL) {
-        ESP_LOGW(TAG, "⚠️ 时间同步任务已经在运行");
+        ESP_LOGW(TAG, "⚠️ 时间同步任务已在运行");
         return false;
     }
 
-    // 创建互斥锁 (如果还没创建)
+    // 创建 AT 互斥锁（若尚未创建）
     if (at_command_mutex_ == NULL) {
         at_command_mutex_ = xSemaphoreCreateMutex();
         if (at_command_mutex_ == NULL) {
-            ESP_LOGE(TAG, "❌ 创建互斥锁失败");
+            ESP_LOGE(TAG, "❌ 创建 AT 互斥锁失败");
             return false;
         }
-        ESP_LOGD(TAG, "✅ AT命令互斥锁已创建");
     }
 
-    // 创建事件组
-    if (time_event_group_ == NULL) {
-        time_event_group_ = xEventGroupCreate();
-    }
-
-    // 重置状态
-    is_running_ = true;
-    ntp_sync_status_ = NTP_SYNC_IDLE;
-    last_sync_tick_ = 0;
+    is_running_          = true;
+    rtc_synced_          = false;
+    midnight_sync_done_  = false;
+    ntp_sync_status_     = NTP_SYNC_IDLE;
 
     ESP_LOGI(TAG, "");
     ESP_LOGI(TAG, "========================================");
-    ESP_LOGI(TAG, "  ML307 时间同步模块配置");
-    ESP_LOGI(TAG, "========================================");
-    ESP_LOGI(TAG, "打印间隔: %lu ms", TIME_LOG_INTERVAL_MS);
-    ESP_LOGI(TAG, "NTP服务器: %s:%d", ntp_server_, ntp_port_);
-    #if NTP_AUTO_SYNC_INTERVAL_MS > 0
-    ESP_LOGI(TAG, "自动同步间隔: %lu ms", NTP_AUTO_SYNC_INTERVAL_MS);
-    #else
-    ESP_LOGI(TAG, "自动同步: 禁用");
-    #endif
+    ESP_LOGI(TAG, "  ML307 时间模块配置");
+    ESP_LOGI(TAG, "  日志间隔  : %lu ms", TIME_LOG_INTERVAL_MS);
+    ESP_LOGI(TAG, "  NTP服务器 : %s:%d", NTP_SERVER_ADDRESS, NTP_SERVER_PORT);
+    ESP_LOGI(TAG, "  计时方式  : ESP32 RTC (首次同步后)");
+#if TIME_MIDNIGHT_SYNC_WINDOW_MIN > 0
+    ESP_LOGI(TAG, "  凌晨重同步: 00:00~00:%02d", TIME_MIDNIGHT_SYNC_WINDOW_MIN);
+#else
+    ESP_LOGI(TAG, "  凌晨重同步: 禁用");
+#endif
     ESP_LOGI(TAG, "========================================");
     ESP_LOGI(TAG, "");
 
-    // 创建任务
     BaseType_t ret = xTaskCreate(
         time_sync_task,
         "ml307_time",
@@ -421,7 +386,7 @@ bool ml307_sntp_time_start(void)
         &time_task_handle_);
 
     if (ret != pdPASS) {
-        ESP_LOGE(TAG, "❌ 创建时间同步任务失败");
+        ESP_LOGE(TAG, "❌ 创建时间任务失败");
         is_running_ = false;
         return false;
     }
@@ -433,52 +398,35 @@ bool ml307_sntp_time_start(void)
 void ml307_sntp_time_stop(void)
 {
     if (time_task_handle_ == NULL) {
-        ESP_LOGW(TAG, "⚠️ 时间同步任务未运行");
+        ESP_LOGW(TAG, "⚠️ 时间任务未运行");
         return;
     }
 
     ESP_LOGI(TAG, "⏹️ 正在停止时间同步任务...");
     is_running_ = false;
-
-    // 等待任务退出
     while (time_task_handle_ != NULL) {
         vTaskDelay(pdMS_TO_TICKS(100));
     }
-
     ESP_LOGI(TAG, "✅ 时间同步任务已停止");
 }
 
-bool ml307_sntp_sync_ntp(void)
+bool ml307_sntp_get_rtc_time(ml307_time_t *time)
 {
-    if (!is_running_) {
-        ESP_LOGW(TAG, "⚠️ 时间任务未运行");
-        return false;
-    }
-
-    return internal_sync_ntp();
-}
-
-bool ml307_sntp_get_time(ml307_time_t *time)
-{
-    if (time == NULL) {
-        return false;
-    }
-
-    return internal_get_time(time);
+    if (time == NULL) return false;
+    return read_rtc(time);
 }
 
 bool ml307_sntp_get_time_string(char *buffer, size_t size)
 {
-    if (buffer == NULL || size == 0) {
+    if (buffer == NULL || size == 0) return false;
+
+    ml307_time_t now;
+    if (!read_rtc(&now)) {
+        snprintf(buffer, size, "--:--:--");
         return false;
     }
 
-    ml307_time_t current_time;
-    if (!internal_get_time(&current_time)) {
-        return false;
-    }
-
-    format_time_string(&current_time, buffer, size);
+    snprintf(buffer, size, "%02d:%02d:%02d", now.hour, now.minute, now.second);
     return true;
 }
 
@@ -487,40 +435,24 @@ ntp_sync_status_t ml307_sntp_get_sync_status(void)
     return ntp_sync_status_;
 }
 
-uint32_t ml307_sntp_get_last_sync_tick(void)
-{
-    return last_sync_tick_;
-}
-
 bool ml307_sntp_is_running(void)
 {
     return (time_task_handle_ != NULL && is_running_);
 }
 
-void ml307_sntp_set_ntp_server(const char *server, uint16_t port)
+bool ml307_sntp_is_rtc_synced(void)
 {
-    if (server != NULL) {
-        strncpy(ntp_server_, server, sizeof(ntp_server_) - 1);
-        ntp_server_[sizeof(ntp_server_) - 1] = '\0';
-    }
-    
-    if (port > 0) {
-        ntp_port_ = port;
-    }
-
-    ESP_LOGI(TAG, "✅ NTP服务器已更新: %s:%d", ntp_server_, ntp_port_);
+    return rtc_synced_;
 }
 
 void ml307_sntp_register_callback(ml307_time_callback_t callback)
 {
     time_callback_ = callback;
-    
     if (callback != NULL) {
         ESP_LOGI(TAG, "✅ 时间回调已注册");
     } else {
-        ESP_LOGI(TAG, "❌ 时间回调已取消");
+        ESP_LOGI(TAG, "时间回调已取消");
     }
 }
 
 } // extern "C"
-

@@ -2,7 +2,7 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-08 10:26:37
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-08 13:34:34
+ * @LastEditTime: 2026-03-10 13:54:06
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\WIFI_MQTT\beehive_system.h
  * @Description: BeeHive 系统管理模块（整合 WiFi + MQTT + 超时检测）
  */
@@ -10,7 +10,6 @@
 #define BEEHIVE_SYSTEM_H
 
 #include "esp_err.h"
-
 
 #ifdef __cplusplus
 extern "C"
@@ -20,7 +19,7 @@ extern "C"
 /* ==================== 配置宏定义 ==================== */
 // WiFi 连接超时时间（秒），默认：60 秒
 #ifndef WIFI_TIMEOUT_SECONDS
-#define WIFI_TIMEOUT_SECONDS 10
+#define WIFI_TIMEOUT_SECONDS 60
 #endif
 
 // WiFi 连接状态检查间隔（秒），默认：5 秒
