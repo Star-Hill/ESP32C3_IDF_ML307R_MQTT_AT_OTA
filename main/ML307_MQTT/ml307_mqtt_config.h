@@ -2,7 +2,7 @@
  * @Author: StarHill cishaxiatian@163.com
  * @Date: 2026-03-07 13:35:17
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-10 12:00:00
+ * @LastEditTime: 2026-03-10 15:27:35
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\ML307_MQTT\ml307_mqtt_config.h
  * @Description: 修改这个文件来配置 MQTT 连接参数
  */
@@ -35,7 +35,7 @@
 // 高频时段开始小时 (0–23)
 #define MQTT_HIGH_FREQ_START_HOUR 7
 // 高频时段结束小时 (0–23, 不含, 即到该小时的 00:00 为止)
-#define MQTT_HIGH_FREQ_END_HOUR 12
+#define MQTT_HIGH_FREQ_END_HOUR 19
 // 高频时段上传间隔 (毫秒)  60000 = 60秒
 #define MQTT_HIGH_FREQ_INTERVAL_MS 60000UL
 // 低频时段上传间隔 (毫秒)  3600000 = 1小时

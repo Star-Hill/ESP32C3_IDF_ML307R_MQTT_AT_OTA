@@ -2,7 +2,7 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-05 17:21:09
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-10 11:24:40
+ * @LastEditTime: 2026-03-10 15:28:29
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\main.cpp
  * @Description: 主函数，启动整个系统
  */
@@ -54,11 +54,9 @@ extern "C" void app_main(void)
     ESP_LOGI(TAG, "System ready.");
 
 
-    // ✨ 一行代码启动整个系统（WiFi + ML407R + MQTT + 超时检测）
+    // ✨ 一行代码启动整个系统（WiFi + ML407R + MQTT + 超时检测 + 时间显示）
     beehive_system_start();
 
-    // 3. 启动时间显示（一行代码）
-    wifi_time_display_start();
 
     // 主循环：可以在这里添加其他功能
     while (1)

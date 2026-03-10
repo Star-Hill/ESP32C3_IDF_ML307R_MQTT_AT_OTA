@@ -2,7 +2,7 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-07 13:35:36
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-10 13:46:41
+ * @LastEditTime: 2026-03-10 15:28:04
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\ML307_MQTT\ml307_mqtt_client.cpp
  * @Description: ML307 MQTT 客户端模块 - 实现文件
  *
@@ -14,7 +14,6 @@
  *
  * RTC 时间由 ml307_sntp_time 模块维护；若 RTC 尚未就绪则默认使用高频间隔。
  */
-
 #include "ml307_mqtt_client.h"
 #include "ml307_mqtt_config.h"
 #include "ml307_sntp_time.h"   // 读取 RTC 时间

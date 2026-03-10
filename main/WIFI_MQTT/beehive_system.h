@@ -10,26 +10,11 @@
 #define BEEHIVE_SYSTEM_H
 
 #include "esp_err.h"
+#include "beehive_system_config.h" // 统一配置（WiFi超时、MQTT间隔等）
 
 #ifdef __cplusplus
 extern "C"
 {
-#endif
-
-/* ==================== 配置宏定义 ==================== */
-// WiFi 连接超时时间（秒），默认：60 秒
-#ifndef WIFI_TIMEOUT_SECONDS
-#define WIFI_TIMEOUT_SECONDS 60
-#endif
-
-// WiFi 连接状态检查间隔（秒），默认：5 秒
-#ifndef WIFI_CHECK_INTERVAL_SECONDS
-#define WIFI_CHECK_INTERVAL_SECONDS 5
-#endif
-
-// MQTT 数据发布间隔（秒），默认：5 秒
-#ifndef MQTT_PUBLISH_INTERVAL_SECONDS
-#define MQTT_PUBLISH_INTERVAL_SECONDS 5
 #endif
 
     /* ==================== 函数声明 ==================== */
@@ -39,9 +24,9 @@ extern "C"
      *
      * 功能：
      * - 初始化 WiFi 配网模块
-     * - 启动 WiFi 超时检测
-     * - 启动 MQTT 数据发布任务
-     * - WiFi 连接成功后自动启动 MQTT
+     * - 启动 WiFi 超时检测（超时自动切换 4G ML307）
+     * - 启动 MQTT 数据发布任务（分时高低频策略）
+     * - WiFi 连接成功后自动启动 ESP MQTT 客户端
      *
      * @return ESP_OK 成功 / ESP_FAIL 失败
      */

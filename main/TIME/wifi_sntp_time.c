@@ -2,11 +2,12 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-08 16:34:55
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-09 11:41:10
- * @FilePath: \BeeHive_Vscode_4G_WIFI\main\TIME\wifi_ntp_time.c
+ * @LastEditTime: 2026-03-10 15:27:22
+ * @FilePath: \BeeHive_Vscode_4G_WIFI\main\TIME\wifi_sntp_time.c
  * @Description: 时间显示模块实现
  */
 #include "wifi_sntp_time.h"
+#include "beehive_system_config.h" // 统一配置：TIME_DISPLAY_INTERVAL_SECONDS
 #include "esp_log.h"
 #include "esp_sntp.h"
 #include "freertos/FreeRTOS.h"
@@ -16,11 +17,7 @@
 #include <string.h>
 
 /* ==================== 配置宏定义 ==================== */
-
-// 时间显示间隔（秒）
-#ifndef TIME_DISPLAY_INTERVAL_SECONDS
-#define TIME_DISPLAY_INTERVAL_SECONDS 5
-#endif
+// TIME_DISPLAY_INTERVAL_SECONDS 已由 beehive_system_config.h 统一定义
 
 // NTP 服务器（可选多个，自动选择最快的）
 #define NTP_SERVER_1 "ntp.aliyun.com"  // 阿里云 NTP
@@ -74,7 +71,7 @@ static void initialize_sntp(void)
 
 /* ==================== 等待时间同步 ==================== */
 
-static void wait_for_time_sync(void)
+static bool wait_for_time_sync(void)
 {
     int retry = 0;
     const int max_retry = 50; // 最多等待 50 秒
@@ -91,10 +88,12 @@ static void wait_for_time_sync(void)
     if (s_time_synced)
     {
         ESP_LOGI(TAG, "✅ 时间同步完成");
+        return true;
     }
     else
     {
-        ESP_LOGW(TAG, "⚠️  时间同步超时，将在后台继续尝试");
+        ESP_LOGE(TAG, "❌ 时间同步超时，退出时间显示任务");
+        return false;
     }
 }
 
@@ -141,8 +140,14 @@ static void time_display_task(void *pvParameters)
     // 初始化 NTP
     initialize_sntp();
 
-    // 等待时间同步（非阻塞，后台继续）
-    wait_for_time_sync();
+    // 等待时间同步，失败则退出任务
+    if (!wait_for_time_sync())
+    {
+        ESP_LOGE(TAG, "时间显示任务退出");
+        s_time_display_task = NULL;
+        vTaskDelete(NULL);
+        return;
+    }
 
     ESP_LOGI(TAG, "");
     ESP_LOGI(TAG, "========================================");

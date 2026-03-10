@@ -2,12 +2,13 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-08 10:26:37
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-10 01:21:10
+ * @LastEditTime: 2026-03-10 15:28:52
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\WIFI_MQTT\beehive_system.c
  * @Description: BeeHive 系统核心模块 - 实现文件
  */
 
 #include "beehive_system.h"
+#include "beehive_system_config.h" // 统一配置文件
 #include "xn_wifi_manage.h"
 #include "ml307_mqtt_config.h"
 #include "esp_log.h"
@@ -19,9 +20,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <inttypes.h>
+#include <time.h> // localtime_r
 
 #include "ml307_mqtt_client.h"
 #include "DHT11/bsp_dht11.h"
+#include "XL9555/xl9555_ir_counter.h"
+#include "wifi_sntp_time.h"
+
 /* ==================== 内部变量 ==================== */
 
 static const char *TAG = "beehive_system";
@@ -30,12 +35,49 @@ static const char *TAG = "beehive_system";
 static esp_mqtt_client_handle_t s_mqtt_client = NULL;
 static TaskHandle_t s_mqtt_publish_task = NULL;
 static bool s_mqtt_connected = false;
-static int s_publish_interval = MQTT_PUBLISH_INTERVAL_SECONDS;
 
 // WiFi 超时相关
 static TaskHandle_t s_wifi_timeout_task = NULL;
 static bool s_wifi_connected = false;
 static bool s_wifi_timeout_triggered = false;
+
+// 动态间隔覆盖：0 表示不覆盖，使用分时策略；>0 表示云端下发的自定义间隔（毫秒）
+static uint32_t s_publish_interval_override_ms = 0;
+
+/* ==================== 分时间隔辅助函数 ==================== */
+
+/**
+ * @brief 根据当前本地时间返回应使用的 MQTT 上传间隔（毫秒）
+ *        高频时段 [HIGH_START, HIGH_END)  → WIFI_MQTT_HIGH_FREQ_INTERVAL_MS
+ *        低频时段 其余                    → WIFI_MQTT_LOW_FREQ_INTERVAL_MS
+ *        若系统时间尚未同步（year<2020），保守使用高频间隔
+ */
+static uint32_t get_wifi_publish_interval_ms(void)
+{
+    // 云端动态下发了自定义间隔，优先使用
+    if (s_publish_interval_override_ms > 0)
+    {
+        return s_publish_interval_override_ms;
+    }
+
+    time_t now;
+    struct tm ti;
+    time(&now);
+    localtime_r(&now, &ti);
+
+    // 年份合理性校验（未同步时 tm_year+1900 < 2020）
+    if (ti.tm_year + 1900 < 2020)
+    {
+        return (uint32_t)WIFI_MQTT_HIGH_FREQ_INTERVAL_MS;
+    }
+
+    int h = ti.tm_hour;
+    bool high = (h >= WIFI_MQTT_HIGH_FREQ_START_HOUR &&
+                 h < WIFI_MQTT_HIGH_FREQ_END_HOUR);
+
+    return high ? (uint32_t)WIFI_MQTT_HIGH_FREQ_INTERVAL_MS
+                : (uint32_t)WIFI_MQTT_LOW_FREQ_INTERVAL_MS;
+}
 
 /* ==================== MQTT 功能 ==================== */
 
@@ -93,9 +135,15 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
                 cJSON *time_item = cJSON_GetObjectItem(params, "time");
                 if (cJSON_IsNumber(time_item))
                 {
-                    int new_interval = time_item->valueint;
-                    ESP_LOGI(TAG, "🔧 更新上报间隔: %d -> %d 秒", s_publish_interval, new_interval);
-                    s_publish_interval = new_interval;
+                    cJSON *time_item = cJSON_GetObjectItem(params, "time");
+                    if (cJSON_IsNumber(time_item))
+                    {
+                        int new_interval_sec = time_item->valueint;
+                        uint32_t new_interval_ms = (uint32_t)(new_interval_sec * 1000);
+                        ESP_LOGI(TAG, "🔧 更新上报间隔: %lu ms -> %d s (%d ms)",
+                                 s_publish_interval_override_ms, new_interval_sec, new_interval_sec * 1000);
+                        s_publish_interval_override_ms = new_interval_ms;
+                    }
                 }
             }
         }
@@ -125,10 +173,21 @@ static void mqtt_publish_task(void *pvParameters)
     char mqtt_publish_data[1024];
     int token_id = 0;
 
-    ESP_LOGI(TAG, "📡 MQTT 数据发布任务已启动");
+    ESP_LOGI(TAG, "");
+    ESP_LOGI(TAG, "========================================");
+    ESP_LOGI(TAG, "  MQTT 数据发布任务已启动");
+    ESP_LOGI(TAG, "  高频时段 : %02d:00 ~ %02d:00 (间隔 %lu s)",
+             WIFI_MQTT_HIGH_FREQ_START_HOUR, WIFI_MQTT_HIGH_FREQ_END_HOUR,
+             WIFI_MQTT_HIGH_FREQ_INTERVAL_MS / 1000UL);
+    ESP_LOGI(TAG, "  低频时段 : 其余      (间隔 %lu s)",
+             WIFI_MQTT_LOW_FREQ_INTERVAL_MS / 1000UL);
+    ESP_LOGI(TAG, "========================================");
+    ESP_LOGI(TAG, "");
 
     while (1)
     {
+        uint32_t interval_ms = get_wifi_publish_interval_ms();
+
         if (s_mqtt_client != NULL && s_mqtt_connected)
         {
             token_id++;
@@ -147,7 +206,7 @@ static void mqtt_publish_task(void *pvParameters)
                 total_count += ch[i];
             }
 
-            // 构建 JSON（与 ML307 格式一致）
+            // 构建 JSON
             snprintf(mqtt_publish_data, sizeof(mqtt_publish_data),
                      "{"
                      "\"method\":\"report\","
@@ -182,15 +241,40 @@ static void mqtt_publish_task(void *pvParameters)
                      ch[12], ch[13], ch[14], ch[15],
                      total_count);
 
-            esp_mqtt_client_publish(s_mqtt_client, MQTT_PUBLISH_TOPIC,
-                                    mqtt_publish_data, strlen(mqtt_publish_data), 0, 0);
+            // 发布并判断结果
+            int msg_id = esp_mqtt_client_publish(s_mqtt_client, MQTT_PUBLISH_TOPIC,
+                                                 mqtt_publish_data,
+                                                 strlen(mqtt_publish_data), 0, 0);
+            if (msg_id >= 0)
+            {
+                // 打印发布日志，附上当前时段信息
+                time_t now;
+                struct tm ti;
+                time(&now);
+                localtime_r(&now, &ti);
+                bool high = (ti.tm_hour >= WIFI_MQTT_HIGH_FREQ_START_HOUR &&
+                             ti.tm_hour < WIFI_MQTT_HIGH_FREQ_END_HOUR);
+                ESP_LOGI(TAG, "📤 [%d] %s  (%s %lu s)",
+                         token_id, mqtt_publish_data,
+                         high ? "高频" : "低频",
+                         interval_ms / 1000UL);
 
-            ESP_LOGI(TAG, "📤 已发布 [%d]: %s", token_id, mqtt_publish_data);
-
-            // ✅ 发布成功后重置红外计数
-            xl9555_ir_counter_reset(0xFF);
+                // ✅ 发布成功后重置红外计数
+                xl9555_ir_counter_reset(0xFF);
+            }
+            else
+            {
+                ESP_LOGE(TAG, "❌ [%d] 发布失败 (msg_id=%d)", token_id, msg_id);
+            }
         }
-        vTaskDelay(pdMS_TO_TICKS(s_publish_interval * 1000));
+
+        // 将长间隔切成 1 秒小片，保持任务响应性
+        uint32_t elapsed = 0;
+        while (elapsed < interval_ms)
+        {
+            vTaskDelay(pdMS_TO_TICKS(1000));
+            elapsed += 1000;
+        }
     }
 }
 
@@ -355,7 +439,8 @@ esp_err_t beehive_system_start(void)
 
     // 2. 启动 WiFi 超时检测
     BaseType_t task_ret = xTaskCreate(wifi_timeout_check_task, "wifi_timeout",
-                                      3072, NULL, 5, &s_wifi_timeout_task);
+                                      WIFI_TIMEOUT_TASK_STACK_SIZE, NULL,
+                                      WIFI_TIMEOUT_TASK_PRIORITY, &s_wifi_timeout_task);
     if (task_ret != pdPASS)
     {
         ESP_LOGE(TAG, "❌ WiFi 超时检测任务创建失败");
@@ -364,7 +449,8 @@ esp_err_t beehive_system_start(void)
 
     // 3. 启动 MQTT 数据发布任务
     task_ret = xTaskCreate(mqtt_publish_task, "mqtt_publish",
-                           4096, NULL, 5, &s_mqtt_publish_task);
+                           MQTT_PUBLISH_TASK_STACK_SIZE, NULL,
+                           MQTT_PUBLISH_TASK_PRIORITY, &s_mqtt_publish_task);
     if (task_ret != pdPASS)
     {
         ESP_LOGE(TAG, "❌ MQTT 发布任务创建失败");
@@ -377,6 +463,9 @@ esp_err_t beehive_system_start(void)
     ESP_LOGI(TAG, "  等待 WiFi 连接（%d秒超时）...", WIFI_TIMEOUT_SECONDS);
     ESP_LOGI(TAG, "========================================");
     ESP_LOGI(TAG, "");
+
+    // 启动WIFI的时间显示任务
+    wifi_time_display_start();
 
     return ESP_OK;
 }
