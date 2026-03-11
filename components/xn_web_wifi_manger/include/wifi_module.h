@@ -1,9 +1,4 @@
 /*
- * @Author: 星年 && jixingnian@gmail.com
- * @Date: 2025-11-22 16:37:33
- * @LastEditors: xingnian && jixingnian@gmail.com
- * @LastEditTime: 2025-11-22 22:00:00
- * @FilePath: \web_wifi_config\components\web_wifi_manger\include\wifi_module.h
  * @Description: WiFi 底层封装，仅负责 STA/AP 初始化、连接与事件上报
  *
  * 上层（如 wifi_manage）通过：

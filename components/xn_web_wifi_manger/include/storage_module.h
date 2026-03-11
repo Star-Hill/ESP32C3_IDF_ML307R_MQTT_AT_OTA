@@ -1,9 +1,4 @@
 /*
- * @Author: 星年 && jixingnian@gmail.com
- * @Date: 2025-11-22 16:38:49
- * @LastEditors: xingnian && jixingnian@gmail.com
- * @LastEditTime: 2025-11-22 21:00:00
- * @FilePath: \xn_web_wifi_config\components\xn_web_wifi_manger\include\storage_module.h
  * @Description: WiFi 存储模块（基于 NVS 的 WiFi 列表管理接口）
  *
  * 仅负责“存 / 取 / 删”WiFi 配置，不直接操作 WiFi 连接。

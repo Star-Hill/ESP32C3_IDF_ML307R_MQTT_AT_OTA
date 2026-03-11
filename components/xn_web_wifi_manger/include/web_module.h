@@ -1,9 +1,4 @@
 /*
- * @Author: 星年 && jixingnian@gmail.com
- * @Date: 2025-11-22 21:45:00
- * @LastEditors: xingnian jixingnian@gmail.com
- * @LastEditTime: 2025-11-22 23:11:28
- * @FilePath: \xn_web_wifi_config\components\xn_web_wifi_manger\include\web_module.h
  * @Description: Web 配网模块对外接口（HTTP 服务器 + 回调驱动的业务能力）
  *
  * 设计要点：

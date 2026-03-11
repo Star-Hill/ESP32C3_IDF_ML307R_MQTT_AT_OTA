@@ -2,7 +2,7 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-08 10:26:37
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-10 15:28:52
+ * @LastEditTime: 2026-03-11 16:18:32
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\WIFI_MQTT\beehive_system.c
  * @Description: BeeHive 系统核心模块 - 实现文件
  */
@@ -26,6 +26,7 @@
 #include "DHT11/bsp_dht11.h"
 #include "XL9555/xl9555_ir_counter.h"
 #include "wifi_sntp_time.h"
+#include "ota_task.h"
 
 /* ==================== 内部变量 ==================== */
 
@@ -127,26 +128,23 @@ static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_
         }
 
         cJSON *method = cJSON_GetObjectItem(root, "method");
-        if (cJSON_IsString(method) && strcmp(method->valuestring, "control") == 0)
+        if (!cJSON_IsString(method))
         {
-            cJSON *params = cJSON_GetObjectItem(root, "params");
-            if (cJSON_IsObject(params))
-            {
-                cJSON *time_item = cJSON_GetObjectItem(params, "time");
-                if (cJSON_IsNumber(time_item))
-                {
-                    cJSON *time_item = cJSON_GetObjectItem(params, "time");
-                    if (cJSON_IsNumber(time_item))
-                    {
-                        int new_interval_sec = time_item->valueint;
-                        uint32_t new_interval_ms = (uint32_t)(new_interval_sec * 1000);
-                        ESP_LOGI(TAG, "🔧 更新上报间隔: %lu ms -> %d s (%d ms)",
-                                 s_publish_interval_override_ms, new_interval_sec, new_interval_sec * 1000);
-                        s_publish_interval_override_ms = new_interval_ms;
-                    }
-                }
-            }
+            cJSON_Delete(root);
+            break;
         }
+
+        if (strcmp(method->valuestring, "Start_OTA") == 0)
+        {
+            ESP_LOGI(TAG, "🚀 收到 OTA 指令，开始 OTA 升级...");
+            // TODO: 调用你的 OTA 启动函数，例如：
+            ota_task_start();
+        }
+        else
+        {
+            ESP_LOGW(TAG, "⚠️  未知 method: %s", method->valuestring);
+        }
+
         cJSON_Delete(root);
     }
     break;

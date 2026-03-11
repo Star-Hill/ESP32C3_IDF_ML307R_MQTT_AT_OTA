@@ -1,4 +1,4 @@
-# Install script for directory: D:/Program_Workspace/ESP_Workspace/ESP32C3/BeeHive_Vscode_4G_WIFI/components/xn_web_wifi_manger
+# Install script for directory: D:/Program_Workspace/ESP_Workspace/ESP32C3/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/components/xn_web_wifi_manger
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

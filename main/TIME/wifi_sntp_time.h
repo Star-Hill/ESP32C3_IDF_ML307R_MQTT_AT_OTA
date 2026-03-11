@@ -2,8 +2,8 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-08 16:35:31
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-08 17:03:50
- * @FilePath: \BeeHive_Vscode_4G_WIFI\main\TIME\time_display.h
+ * @LastEditTime: 2026-03-11 15:10:51
+ * @FilePath: \BeeHive_Vscode_4G_WIFI\main\TIME\wifi_sntp_time.h
  * @Description: 时间显示模块头文件，连接上WIFI后直接调用这个即可日志显示时间
  */
 

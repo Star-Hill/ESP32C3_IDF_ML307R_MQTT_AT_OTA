@@ -1,0 +1,1 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=d:\Program\C\Espidf552\IDF_TOOLS552\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DSDKCONFIG='d:\Program_Workspace\ESP_Workspace\ESP32C3\BeeHive_Vscode\BeeHive_Vscode_4G_WIFI\sdkconfig' -DCCACHE_ENABLE=1 D:\Program_Workspace\ESP_Workspace\ESP32C3\BeeHive_Vscode\BeeHive_Vscode_4G_WIFI

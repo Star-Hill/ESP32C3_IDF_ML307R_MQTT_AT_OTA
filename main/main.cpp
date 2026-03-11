@@ -2,7 +2,7 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-05 17:21:09
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-10 15:28:29
+ * @LastEditTime: 2026-03-11 16:28:14
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\main.cpp
  * @Description: 主函数，启动整个系统
  */
@@ -43,9 +43,14 @@ extern "C"
 
 static const char *TAG = "MAIN";
 
+#define BEEHIVE_VERSION  "2.0.0"
+#define BEEHIVE_BUILD    "2026-03-15"
 extern "C" void app_main(void)
 {
-
+    ESP_LOGI(TAG, "╔═══════════════════════════════════════╗");
+    ESP_LOGI(TAG, "║       🐝 BeeHive  v%-19s║", BEEHIVE_VERSION);
+    ESP_LOGI(TAG, "║          Build: %-22s║", BEEHIVE_BUILD);
+    ESP_LOGI(TAG, "╚═══════════════════════════════════════╝");
     // 启动DHT11任务，自动定时读取并输出
     dht11_task_start();
     // 初始化硬件（I2C + XL9555 + INT GPIO）

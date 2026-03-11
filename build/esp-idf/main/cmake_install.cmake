@@ -1,4 +1,4 @@
-# Install script for directory: D:/Program_Workspace/ESP_Workspace/ESP32C3/BeeHive_Vscode_4G_WIFI/main
+# Install script for directory: D:/Program_Workspace/ESP_Workspace/ESP32C3/BeeHive_Vscode/BeeHive_Vscode_4G_WIFI/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -7,6 +7,7 @@ idf_component_register(
         "WIFI_MQTT/beehive_system.c"
         "TIME/wifi_sntp_time.c"
         "TIME/ml307_sntp_time.cpp"
+        "OTA/ota_task.c"
         
 
     PRIV_REQUIRES 
@@ -20,6 +21,7 @@ idf_component_register(
         esp_http_server
         #添加配网组件
         xn_web_wifi_manger
+        xn_ota_manager
     
     INCLUDE_DIRS 
         "."
@@ -28,6 +30,7 @@ idf_component_register(
         "ML307_MQTT"
         "WIFI_MQTT"
         "TIME"
+        "OTA"
 )
 
 # 添加 ML307 组件的内部头文件路径
