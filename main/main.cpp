@@ -23,15 +23,16 @@
 #include "cJSON.h"
 #include "esp_event.h"
 #include "mqtt_client.h"
-#include "esp_wifi.h"  
+#include "esp_wifi.h"
 
-//外设 温湿度+IO扩展+红外计数
+// 外设 温湿度+IO扩展+红外计数
 #include "DHT11/bsp_dht11.h"
 #include "esp_io_expander_tca95xx_16bit.h"
 #include "xl9555_ir_counter.h"
 
-extern "C" {
-    #include "xn_wifi_manage.h"
+extern "C"
+{
+#include "xn_wifi_manage.h"
 }
 
 #include "beehive_system.h"
@@ -53,10 +54,8 @@ extern "C" void app_main(void)
     ESP_ERROR_CHECK(xl9555_ir_counter_start());
     ESP_LOGI(TAG, "System ready.");
 
-
     // ✨ 一行代码启动整个系统（WiFi + ML407R + MQTT + 超时检测 + 时间显示）
     beehive_system_start();
-
 
     // 主循环：可以在这里添加其他功能
     while (1)

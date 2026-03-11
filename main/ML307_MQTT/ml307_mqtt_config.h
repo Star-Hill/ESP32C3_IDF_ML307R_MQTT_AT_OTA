@@ -12,10 +12,12 @@
 
 #include "driver/gpio.h"
 
+
 // ==================== MQTT 服务器配置 ====================
 #define MQTT_BROKER_HOST "175.178.117.18"   // MQTT 服务器地址
 #define MQTT_BROKER_PORT 1883               // MQTT 服务器端口
-#define MQTT_CLIENT_ID "BeeHive_ML307_Test" // MQTT 客户端 ID（每个设备必须唯一）
+// #define MQTT_CLIENT_ID "BeeHive_ML307_Test" // MQTT 客户端 ID（每个设备必须唯一）
+// Client ID 由运行时 MAC 地址生成
 #define MQTT_USERNAME "ML307"               // MQTT 用户名
 #define MQTT_PASSWORD "ML307DEMO"           // MQTT 密码
 

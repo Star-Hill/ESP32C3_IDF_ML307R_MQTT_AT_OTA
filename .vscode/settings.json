@@ -17,5 +17,5 @@
   ],
   "idf.portWin": "COM42",
   "idf.flashType": "UART",
-  "idf.currentSetup": "d:\\Program\\C\\Espidf552\\IDF552\\v5.5.2\\esp-idf"
+  "idf.currentSetup": "/home/starhilly/Program/C/IDF553/.espressif/v5.5.3/esp-idf"
 }

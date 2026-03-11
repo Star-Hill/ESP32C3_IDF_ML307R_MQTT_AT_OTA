@@ -292,7 +292,7 @@ static esp_err_t mqtt_start(void)
     mqtt_cfg.broker.address.hostname = MQTT_BROKER_HOST;
     mqtt_cfg.broker.address.port = MQTT_BROKER_PORT;
     mqtt_cfg.broker.address.transport = MQTT_TRANSPORT_OVER_TCP;
-    mqtt_cfg.credentials.client_id = MQTT_CLIENT_ID;
+    mqtt_cfg.credentials.client_id = mqtt_client_get_client_id();
     mqtt_cfg.credentials.username = MQTT_USERNAME;
     mqtt_cfg.credentials.authentication.password = MQTT_PASSWORD;
 

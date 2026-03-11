@@ -1,0 +1,2 @@
+source D:/Program_Workspace/ESP_Workspace/ESP32C3/BeeHive_Vscode_4G_WIFI/build/bootloader/gdbinit/symbols
+source D:/Program_Workspace/ESP_Workspace/ESP32C3/BeeHive_Vscode_4G_WIFI/build/bootloader/gdbinit/connect

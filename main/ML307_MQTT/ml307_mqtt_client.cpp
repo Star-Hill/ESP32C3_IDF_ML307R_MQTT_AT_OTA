@@ -2,7 +2,7 @@
  * @Author: Stathill星丘 && cishaxiatian@gmail.com
  * @Date: 2026-03-07 13:35:36
  * @LastEditors: Stathill星丘 && cishaxiatian@gmail.com
- * @LastEditTime: 2026-03-10 15:28:04
+ * @LastEditTime: 2026-03-11 13:31:26
  * @FilePath: \BeeHive_Vscode_4G_WIFI\main\ML307_MQTT\ml307_mqtt_client.cpp
  * @Description: ML307 MQTT 客户端模块 - 实现文件
  *
@@ -16,7 +16,7 @@
  */
 #include "ml307_mqtt_client.h"
 #include "ml307_mqtt_config.h"
-#include "ml307_sntp_time.h"   // 读取 RTC 时间
+#include "ml307_sntp_time.h" // 读取 RTC 时间
 
 #include <stdio.h>
 #include <string.h>
@@ -26,6 +26,7 @@
 #include "freertos/semphr.h"
 #include "esp_log.h"
 #include "esp_system.h"
+#include "esp_mac.h"
 
 #include "at_uart.h"
 #include "at_modem.h"
@@ -38,19 +39,21 @@ static const char *TAG = "MqttClient";
 static TaskHandle_t mqtt_task_handle_ = NULL;
 
 // ML307 硬件对象
-static std::shared_ptr<AtUart>   at_uart_;
-static std::unique_ptr<AtModem>  modem_;
+static std::shared_ptr<AtUart> at_uart_;
+static std::unique_ptr<AtModem> modem_;
 static std::unique_ptr<Ml307Mqtt> mqtt_;
 
 // 状态
-static bool     is_connected_ = false;
-static bool     is_running_   = false;
+static bool is_connected_ = false;
+static bool is_running_ = false;
 static uint32_t message_count_ = 0;
+// 运行时生成的 Client ID（格式: BeeHive_AABBCCDDEEFF）
+static char s_mqtt_client_id[32] = {0};
 
 // AT+CCLK? 响应缓存 (供时间模块使用)
-static std::string    cclk_response_;
+static std::string cclk_response_;
 static SemaphoreHandle_t cclk_semaphore_ = NULL;
-static bool           cclk_received_   = false;
+static bool cclk_received_ = false;
 
 // ==================== 内部辅助函数 ====================
 
@@ -62,21 +65,22 @@ static bool           cclk_received_   = false;
 static uint32_t get_publish_interval_ms(void)
 {
     ml307_time_t now;
-    if (!ml307_sntp_get_rtc_time(&now)) {
+    if (!ml307_sntp_get_rtc_time(&now))
+    {
         // RTC 尚未就绪，保守使用高频
         return (uint32_t)MQTT_HIGH_FREQ_INTERVAL_MS;
     }
 
     int h = now.hour;
     bool high_freq = (MQTT_HIGH_FREQ_START_HOUR <= MQTT_HIGH_FREQ_END_HOUR)
-                   ? (h >= MQTT_HIGH_FREQ_START_HOUR && h < MQTT_HIGH_FREQ_END_HOUR)
-                   : (h >= MQTT_HIGH_FREQ_START_HOUR || h < MQTT_HIGH_FREQ_END_HOUR);
+                         ? (h >= MQTT_HIGH_FREQ_START_HOUR && h < MQTT_HIGH_FREQ_END_HOUR)
+                         : (h >= MQTT_HIGH_FREQ_START_HOUR || h < MQTT_HIGH_FREQ_END_HOUR);
     // 注: 若 START > END (如 22:00~06:00 夜间高频) 上面的三元表达式也能正确处理
     //     本项目 START=7 < END=19，走第一分支即可
 
     return high_freq
-           ? (uint32_t)MQTT_HIGH_FREQ_INTERVAL_MS
-           : (uint32_t)MQTT_LOW_FREQ_INTERVAL_MS;
+               ? (uint32_t)MQTT_HIGH_FREQ_INTERVAL_MS
+               : (uint32_t)MQTT_LOW_FREQ_INTERVAL_MS;
 }
 
 // ==================== 初始化步骤 ====================
@@ -86,7 +90,8 @@ static bool init_modem(void)
     ESP_LOGI(TAG, "初始化 ML307 模组...");
 
     modem_ = AtModem::Detect(ML307_UART_TX_PIN, ML307_UART_RX_PIN, ML307_UART_DTR_PIN, 921600);
-    if (modem_ == nullptr) {
+    if (modem_ == nullptr)
+    {
         ESP_LOGE(TAG, "未检测到 ML307 模组");
         return false;
     }
@@ -95,8 +100,8 @@ static bool init_modem(void)
     at_uart_ = modem_->GetAtUart();
 
     std::string revision = modem_->GetModuleRevision();
-    std::string imei     = modem_->GetImei();
-    std::string iccid    = modem_->GetIccid();
+    std::string imei = modem_->GetImei();
+    std::string iccid = modem_->GetIccid();
 
     ESP_LOGI(TAG, "  版本 : %s", revision.c_str());
     ESP_LOGI(TAG, "  IMEI : %s", imei.c_str());
@@ -109,27 +114,33 @@ static bool wait_for_network(void)
 {
     ESP_LOGI(TAG, "等待网络注册...");
 
-    modem_->OnNetworkStateChanged([](bool network_ready) {
+    modem_->OnNetworkStateChanged([](bool network_ready)
+                                  {
         if (network_ready) {
             ESP_LOGI(TAG, "✓ 网络已就绪");
         } else {
             ESP_LOGW(TAG, "⚠ 网络断开");
             is_connected_ = false;
-        }
-    });
+        } });
 
     const int max_retries = 30;
-    for (int i = 0; i < max_retries && is_running_; i++) {
+    for (int i = 0; i < max_retries && is_running_; i++)
+    {
         auto result = modem_->WaitForNetworkReady();
-        if (result == NetworkStatus::Ready) {
+        if (result == NetworkStatus::Ready)
+        {
             ESP_LOGI(TAG, "✓ 网络注册成功");
             ESP_LOGI(TAG, "  运营商   : %s", modem_->GetCarrierName().c_str());
             ESP_LOGI(TAG, "  信号强度 : %d/31", modem_->GetCsq());
             return true;
-        } else if (result == NetworkStatus::ErrorInsertPin) {
+        }
+        else if (result == NetworkStatus::ErrorInsertPin)
+        {
             ESP_LOGE(TAG, "SIM卡需要PIN码");
             return false;
-        } else if (result == NetworkStatus::ErrorRegistrationDenied) {
+        }
+        else if (result == NetworkStatus::ErrorRegistrationDenied)
+        {
             ESP_LOGE(TAG, "网络注册被拒绝");
             return false;
         }
@@ -146,21 +157,21 @@ static bool connect_mqtt(void)
 
     mqtt_ = std::make_unique<Ml307Mqtt>(at_uart_, MQTT_CONNECTION_ID);
 
-    mqtt_->OnConnected([]() {
+    mqtt_->OnConnected([]()
+                       {
         ESP_LOGI(TAG, "✅ MQTT 已连接");
-        is_connected_ = true;
-    });
+        is_connected_ = true; });
 
-    mqtt_->OnDisconnected([]() {
+    mqtt_->OnDisconnected([]()
+                          {
         ESP_LOGW(TAG, "⚠️ MQTT 已断开");
-        is_connected_ = false;
-    });
+        is_connected_ = false; });
 
-    mqtt_->OnError([](const std::string &error) {
-        ESP_LOGE(TAG, "MQTT 错误: %s", error.c_str());
-    });
+    mqtt_->OnError([](const std::string &error)
+                   { ESP_LOGE(TAG, "MQTT 错误: %s", error.c_str()); });
 
-    mqtt_->OnMessage([](const std::string &topic, const std::string &payload) {
+    mqtt_->OnMessage([](const std::string &topic, const std::string &payload)
+                     {
         ESP_LOGI(TAG, "");
         ESP_LOGI(TAG, "📩 ========== 收到 MQTT 消息 ==========");
         ESP_LOGI(TAG, "   主题: %s", topic.c_str());
@@ -168,17 +179,17 @@ static bool connect_mqtt(void)
         ESP_LOGI(TAG, "   长度: %d 字节", (int)payload.length());
         ESP_LOGI(TAG, "=====================================");
         ESP_LOGI(TAG, "");
-        mqtt_on_message(topic.c_str(), payload.c_str(), payload.length());
-    });
+        mqtt_on_message(topic.c_str(), payload.c_str(), payload.length()); });
 
     ESP_LOGI(TAG, "  服务器   : %s:%d", MQTT_BROKER_HOST, MQTT_BROKER_PORT);
-    ESP_LOGI(TAG, "  客户端ID : %s",    MQTT_CLIENT_ID);
+    ESP_LOGI(TAG, "  客户端ID : %s", s_mqtt_client_id);
 
     bool connected = mqtt_->Connect(
         MQTT_BROKER_HOST, MQTT_BROKER_PORT,
-        MQTT_CLIENT_ID, MQTT_USERNAME, MQTT_PASSWORD);
+        s_mqtt_client_id, MQTT_USERNAME, MQTT_PASSWORD);
 
-    if (!connected) {
+    if (!connected)
+    {
         ESP_LOGE(TAG, "MQTT 连接失败 (错误码: %d)", mqtt_->GetLastError());
         return false;
     }
@@ -191,7 +202,8 @@ static bool connect_mqtt(void)
 static bool subscribe_topic(void)
 {
     ESP_LOGI(TAG, "订阅主题: %s", MQTT_SUBSCRIBE_TOPIC);
-    if (!mqtt_->Subscribe(MQTT_SUBSCRIBE_TOPIC, 0)) {
+    if (!mqtt_->Subscribe(MQTT_SUBSCRIBE_TOPIC, 0))
+    {
         ESP_LOGE(TAG, "订阅失败");
         return false;
     }
@@ -207,16 +219,31 @@ static void mqtt_client_task(void *pvParameters)
     ESP_LOGI(TAG, "  MQTT 客户端任务启动");
     ESP_LOGI(TAG, "========================================");
 
-    if (!init_modem())       { ESP_LOGE(TAG, "模组初始化失败"); goto task_exit; }
+    if (!init_modem())
+    {
+        ESP_LOGE(TAG, "模组初始化失败");
+        goto task_exit;
+    }
     vTaskDelay(pdMS_TO_TICKS(1000));
 
-    if (!wait_for_network()) { ESP_LOGE(TAG, "网络连接失败");   goto task_exit; }
+    if (!wait_for_network())
+    {
+        ESP_LOGE(TAG, "网络连接失败");
+        goto task_exit;
+    }
     vTaskDelay(pdMS_TO_TICKS(2000));
 
-    if (!connect_mqtt())     { ESP_LOGE(TAG, "MQTT 连接失败");  goto task_exit; }
+    if (!connect_mqtt())
+    {
+        ESP_LOGE(TAG, "MQTT 连接失败");
+        goto task_exit;
+    }
     vTaskDelay(pdMS_TO_TICKS(1000));
 
-    if (!subscribe_topic())  { ESP_LOGW(TAG, "订阅失败，继续运行"); }
+    if (!subscribe_topic())
+    {
+        ESP_LOGW(TAG, "订阅失败，继续运行");
+    }
 
     ESP_LOGI(TAG, "");
     ESP_LOGI(TAG, "========================================");
@@ -249,26 +276,35 @@ static void mqtt_client_task(void *pvParameters)
                 int msg_len = mqtt_build_message(message_buffer,
                                                  sizeof(message_buffer),
                                                  message_count_);
-                if (msg_len > 0) {
+                if (msg_len > 0)
+                {
                     if (mqtt_->Publish(MQTT_PUBLISH_TOPIC,
-                                       std::string(message_buffer, msg_len), 0)) {
+                                       std::string(message_buffer, msg_len), 0))
+                    {
                         // 打印发送日志，同时附上当前时段信息
                         ml307_time_t now;
-                        if (ml307_sntp_get_rtc_time(&now)) {
+                        if (ml307_sntp_get_rtc_time(&now))
+                        {
                             bool high = (now.hour >= MQTT_HIGH_FREQ_START_HOUR &&
-                                         now.hour <  MQTT_HIGH_FREQ_END_HOUR);
+                                         now.hour < MQTT_HIGH_FREQ_END_HOUR);
                             ESP_LOGI(TAG, "📤 [%lu] %s  (%s %lu s)",
                                      message_count_, message_buffer,
                                      high ? "高频" : "低频",
                                      interval_ms / 1000);
-                        } else {
+                        }
+                        else
+                        {
                             ESP_LOGI(TAG, "📤 [%lu] %s", message_count_, message_buffer);
                         }
                         xl9555_ir_counter_reset(0xFF); // 重置全部通道计数
-                    } else {
+                    }
+                    else
+                    {
                         ESP_LOGE(TAG, "❌ [%lu] 发送失败", message_count_);
                     }
-                } else {
+                }
+                else
+                {
                     ESP_LOGD(TAG, "跳过发送 (mqtt_build_message 返回 0)");
                 }
             }
@@ -276,11 +312,14 @@ static void mqtt_client_task(void *pvParameters)
             {
                 ESP_LOGW(TAG, "MQTT 未连接，尝试重连...");
                 if (mqtt_->Connect(MQTT_BROKER_HOST, MQTT_BROKER_PORT,
-                                   MQTT_CLIENT_ID, MQTT_USERNAME, MQTT_PASSWORD)) {
+                                   s_mqtt_client_id, MQTT_USERNAME, MQTT_PASSWORD))
+                {
                     ESP_LOGI(TAG, "✅ 重连成功");
                     is_connected_ = true;
                     mqtt_->Subscribe(MQTT_SUBSCRIBE_TOPIC, 0);
-                } else {
+                }
+                else
+                {
                     ESP_LOGE(TAG, "❌ 重连失败，等待 5 秒后重试");
                     vTaskDelay(pdMS_TO_TICKS(5000));
                     continue;
@@ -290,7 +329,8 @@ static void mqtt_client_task(void *pvParameters)
             // ── 等待下次发送 ─────────────────────────────────
             // 将长间隔切成 1 秒的小片，以便 is_running_ = false 后能快速退出
             uint32_t elapsed = 0;
-            while (is_running_ && elapsed < interval_ms) {
+            while (is_running_ && elapsed < interval_ms)
+            {
                 vTaskDelay(pdMS_TO_TICKS(1000));
                 elapsed += 1000;
             }
@@ -307,13 +347,17 @@ task_exit:
 
 bool mqtt_client_start(void)
 {
-    if (mqtt_task_handle_ != NULL) {
+    if (mqtt_task_handle_ != NULL)
+    {
         ESP_LOGW(TAG, "MQTT 客户端任务已经在运行");
         return false;
     }
 
-    is_running_    = true;
-    is_connected_  = false;
+    // 生成基于 eFuse MAC 地址的唯一 Client ID
+    mqtt_client_get_client_id();
+
+    is_running_ = true;
+    is_connected_ = false;
     message_count_ = 0;
 
     ESP_LOGI(TAG, "");
@@ -321,9 +365,9 @@ bool mqtt_client_start(void)
     ESP_LOGI(TAG, "  MQTT 客户端配置");
     ESP_LOGI(TAG, "========================================");
     ESP_LOGI(TAG, "服务器   : %s:%d", MQTT_BROKER_HOST, MQTT_BROKER_PORT);
-    ESP_LOGI(TAG, "客户端ID : %s",    MQTT_CLIENT_ID);
-    ESP_LOGI(TAG, "发布主题 : %s",    MQTT_PUBLISH_TOPIC);
-    ESP_LOGI(TAG, "订阅主题 : %s",    MQTT_SUBSCRIBE_TOPIC);
+    ESP_LOGI(TAG, "客户端ID : %s", s_mqtt_client_id);
+    ESP_LOGI(TAG, "发布主题 : %s", MQTT_PUBLISH_TOPIC);
+    ESP_LOGI(TAG, "订阅主题 : %s", MQTT_SUBSCRIBE_TOPIC);
     ESP_LOGI(TAG, "高频时段 : %02d:00~%02d:00 / %lu ms",
              MQTT_HIGH_FREQ_START_HOUR, MQTT_HIGH_FREQ_END_HOUR,
              MQTT_HIGH_FREQ_INTERVAL_MS);
@@ -339,7 +383,8 @@ bool mqtt_client_start(void)
         MQTT_TASK_PRIORITY,
         &mqtt_task_handle_);
 
-    if (ret != pdPASS) {
+    if (ret != pdPASS)
+    {
         ESP_LOGE(TAG, "创建任务失败");
         is_running_ = false;
         return false;
@@ -351,14 +396,16 @@ bool mqtt_client_start(void)
 
 void mqtt_client_stop(void)
 {
-    if (mqtt_task_handle_ == NULL) {
+    if (mqtt_task_handle_ == NULL)
+    {
         ESP_LOGW(TAG, "MQTT 客户端任务未运行");
         return;
     }
 
     ESP_LOGI(TAG, "正在停止 MQTT 客户端任务...");
     is_running_ = false;
-    while (mqtt_task_handle_ != NULL) {
+    while (mqtt_task_handle_ != NULL)
+    {
         vTaskDelay(pdMS_TO_TICKS(100));
     }
     ESP_LOGI(TAG, "MQTT 客户端任务已停止");
@@ -366,7 +413,8 @@ void mqtt_client_stop(void)
 
 bool mqtt_client_publish(const char *message)
 {
-    if (!is_connected_ || mqtt_ == nullptr || message == NULL) {
+    if (!is_connected_ || mqtt_ == nullptr || message == NULL)
+    {
         ESP_LOGW(TAG, "MQTT 未连接或消息为空");
         return false;
     }
@@ -383,13 +431,25 @@ uint32_t mqtt_client_get_message_count(void)
     return message_count_;
 }
 
+const char *mqtt_client_get_client_id(void)
+{
+    if (s_mqtt_client_id[0] == '\0') {
+        uint8_t mac[6];
+        esp_efuse_mac_get_default(mac);
+        snprintf(s_mqtt_client_id, sizeof(s_mqtt_client_id),
+                 "BeeHive_%02X%02X%02X%02X%02X%02X",
+                 mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+    }
+    return s_mqtt_client_id;
+}
+
 // ==================== 用户回调实现 ====================
 // ==================== 用户回调实现 ====================
 
 int mqtt_build_message(char *buffer, size_t buffer_size, uint32_t message_count)
 {
     // 温湿度
-    float temp  = dht11_get_temperature();
+    float temp = dht11_get_temperature();
     float humid = dht11_get_humidity();
 
     // 16路红外计数
@@ -397,49 +457,50 @@ int mqtt_build_message(char *buffer, size_t buffer_size, uint32_t message_count)
     xl9555_ir_counter_get_all(ch);
 
     uint32_t total_count = 0;
-    for (int i = 0; i < XL9555_IR_CHANNEL_COUNT; i++) {
+    for (int i = 0; i < XL9555_IR_CHANNEL_COUNT; i++)
+    {
         total_count += ch[i];
     }
 
     return snprintf(buffer, buffer_size,
-        "{"
-            "\"method\":\"report\","
-            "\"clientToken\":%lu,"
-            "\"params\":{"
-                "\"temp\":%.2f,"
-                "\"hum\":%.2f,"
-                "\"ch1\":%" PRIu32 ","
-                "\"ch2\":%" PRIu32 ","
-                "\"ch3\":%" PRIu32 ","
-                "\"ch4\":%" PRIu32 ","
-                "\"ch5\":%" PRIu32 ","
-                "\"ch6\":%" PRIu32 ","
-                "\"ch7\":%" PRIu32 ","
-                "\"ch8\":%" PRIu32 ","
-                "\"ch9\":%" PRIu32 ","
-                "\"ch10\":%" PRIu32 ","
-                "\"ch11\":%" PRIu32 ","
-                "\"ch12\":%" PRIu32 ","
-                "\"ch13\":%" PRIu32 ","
-                "\"ch14\":%" PRIu32 ","
-                "\"ch15\":%" PRIu32 ","
-                "\"ch16\":%" PRIu32 ","
-                "\"total_count\":%" PRIu32
-            "}"
-        "}",
-        message_count,
-        temp, humid,
-        ch[0],  ch[1],  ch[2],  ch[3],
-        ch[4],  ch[5],  ch[6],  ch[7],
-        ch[8],  ch[9],  ch[10], ch[11],
-        ch[12], ch[13], ch[14], ch[15],
-        total_count
-    );
+                    "{"
+                    "\"method\":\"report\","
+                    "\"clientToken\":%lu,"
+                    "\"params\":{"
+                    "\"temp\":%.2f,"
+                    "\"hum\":%.2f,"
+                    "\"ch1\":%" PRIu32 ","
+                    "\"ch2\":%" PRIu32 ","
+                    "\"ch3\":%" PRIu32 ","
+                    "\"ch4\":%" PRIu32 ","
+                    "\"ch5\":%" PRIu32 ","
+                    "\"ch6\":%" PRIu32 ","
+                    "\"ch7\":%" PRIu32 ","
+                    "\"ch8\":%" PRIu32 ","
+                    "\"ch9\":%" PRIu32 ","
+                    "\"ch10\":%" PRIu32 ","
+                    "\"ch11\":%" PRIu32 ","
+                    "\"ch12\":%" PRIu32 ","
+                    "\"ch13\":%" PRIu32 ","
+                    "\"ch14\":%" PRIu32 ","
+                    "\"ch15\":%" PRIu32 ","
+                    "\"ch16\":%" PRIu32 ","
+                    "\"total_count\":%" PRIu32
+                    "}"
+                    "}",
+                    message_count,
+                    temp, humid,
+                    ch[0], ch[1], ch[2], ch[3],
+                    ch[4], ch[5], ch[6], ch[7],
+                    ch[8], ch[9], ch[10], ch[11],
+                    ch[12], ch[13], ch[14], ch[15],
+                    total_count);
 }
 
 void mqtt_on_message(const char *topic, const char *payload, size_t payload_len)
 {
-    if (strncmp(payload, "led_on", 6) == 0) {
+    if (strncmp(payload, "led_on", 6) == 0)
+    {
         // 打开 LED
     }
 }
@@ -454,52 +515,63 @@ void mqtt_on_message(const char *topic, const char *payload, size_t payload_len)
  */
 extern "C" bool ml307_get_network_time(char *time_str, size_t size)
 {
-    if (time_str == NULL || size == 0 || at_uart_ == nullptr) {
+    if (time_str == NULL || size == 0 || at_uart_ == nullptr)
+    {
         return false;
     }
 
-    if (cclk_semaphore_ == NULL) {
+    if (cclk_semaphore_ == NULL)
+    {
         cclk_semaphore_ = xSemaphoreCreateBinary();
-        if (cclk_semaphore_ == NULL) return false;
+        if (cclk_semaphore_ == NULL)
+            return false;
     }
 
     cclk_received_ = false;
     cclk_response_.clear();
 
     auto urc_it = at_uart_->RegisterUrcCallback(
-        [](const std::string &command, const std::vector<AtArgumentValue> &arguments) {
-            if (command == "CCLK" && !arguments.empty()) {
+        [](const std::string &command, const std::vector<AtArgumentValue> &arguments)
+        {
+            if (command == "CCLK" && !arguments.empty())
+            {
                 cclk_response_.clear();
-                for (size_t i = 0; i < arguments.size(); i++) {
+                for (size_t i = 0; i < arguments.size(); i++)
+                {
                     cclk_response_ += arguments[i].string_value;
                 }
                 cclk_received_ = true;
-                if (cclk_semaphore_ != NULL) {
+                if (cclk_semaphore_ != NULL)
+                {
                     xSemaphoreGive(cclk_semaphore_);
                 }
             }
-        }
-    );
+        });
 
-    if (!at_uart_->SendCommand("AT+CCLK?", 3000)) {
+    if (!at_uart_->SendCommand("AT+CCLK?", 3000))
+    {
         at_uart_->UnregisterUrcCallback(urc_it);
         return false;
     }
 
-    if (xSemaphoreTake(cclk_semaphore_, pdMS_TO_TICKS(3000)) != pdTRUE) {
+    if (xSemaphoreTake(cclk_semaphore_, pdMS_TO_TICKS(3000)) != pdTRUE)
+    {
         at_uart_->UnregisterUrcCallback(urc_it);
         return false;
     }
 
     at_uart_->UnregisterUrcCallback(urc_it);
 
-    if (!cclk_received_ || cclk_response_.empty()) return false;
+    if (!cclk_received_ || cclk_response_.empty())
+        return false;
 
     // 智能修复缺失的逗号: "26/03/0914:56:20+32" → "26/03/09,14:56:20+32"
     std::string fixed = cclk_response_;
-    if (fixed.find(',') == std::string::npos) {
+    if (fixed.find(',') == std::string::npos)
+    {
         size_t last_slash = fixed.rfind('/');
-        if (last_slash != std::string::npos && last_slash + 2 < fixed.length()) {
+        if (last_slash != std::string::npos && last_slash + 2 < fixed.length())
+        {
             fixed.insert(last_slash + 2, ",");
         }
     }
@@ -513,9 +585,11 @@ extern "C" bool ml307_get_network_time(char *time_str, size_t size)
  */
 extern "C" bool ml307_sync_ntp_time(void)
 {
-    if (at_uart_ == nullptr) return false;
+    if (at_uart_ == nullptr)
+        return false;
 
-    if (!at_uart_->SendCommand("AT+MNTP=\"ntp.aliyun.com\",123,0", 10000)) {
+    if (!at_uart_->SendCommand("AT+MNTP=\"ntp.aliyun.com\",123,0", 10000))
+    {
         return false;
     }
     vTaskDelay(pdMS_TO_TICKS(1000));
